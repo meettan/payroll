@@ -1,4 +1,4 @@
-<div class="daseboard_home">
+<!--<div class="daseboard_home">
     <div class="col-sm-3 float-left">
     <div class="left_bar">
     <h2>Quick Links  <i class="fa fa-link" aria-hidden="true"></i></h2>
@@ -9,8 +9,7 @@
     <li><a href="<?php echo site_url('socpay/society_payment'); ?>">Customer Payment</a></li>
     <li> <a href="#">Stock Ledger</a></li>
     <li><a href="#">Day Book</a></li>
-  <!--  <li><a href="<?php echo site_url('paddys/transactions/f_delivery');?>">CMR Delivery</a></li>
-    <li> <a href="<?php echo site_url('paddys/transactions/f_wqsc');?>">WQSC</a></li> -->
+   
     </ul>
    <?php }else{ ?>
      
@@ -20,8 +19,7 @@
     <li><a href="<?php echo site_url('material'); ?>">Add Product</a></li>
     <li><a href="<?php echo site_url('compay/company_payment'); ?>">Company Payment</a></li>
     <li><a href="#">Stock ledger</a></li>
-   <!-- <li><a href="<?php echo site_url('report/chequestatus'); ?>">Cheque Status</a></li>
-    <li><a href="<?php echo site_url('report/returncheque'); ?>">Return Cheque</a></li> -->
+    
     </ul>
 
    <?php } ?>
@@ -105,7 +103,7 @@
 
     </div>
 
-</div>
+</div>--->
 
 <script>
     var myIndex = 0;

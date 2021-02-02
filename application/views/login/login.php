@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Benfed-Login</title>
+	<title>Benfed Payroll</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,10 +47,10 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form flex-sb flex-w" id="login" method="POST" action="<?php echo site_url("User_Login/index") ?>">
+				<form class="login100-form validate-form flex-sb flex-w" id="login" method="POST" action="<?php echo site_url("Payroll_Login/index") ?>">
 					<div class="login100_logo">
 					<h2><img src="<?php echo base_url('benfed.png'); ?>" alt="logo"></h2>
-					<h3>The West Bengal  State Co-Operative Marketing Federation Ltd (Benfed)</h3>	
+					<h3>The West Bengal State Co-Operative Marketing Federation Ltd.(Benfed)</h3>	
 					</div>
 					 <span class="login100-form-title p-b-10" style="color:red">
 					 <?php echo $this->session->flashdata('login_error');?>
@@ -73,46 +73,12 @@
 						<input class="input100" type="password" name="user_pwd" />
 						<span class="focus-input100"></span>
 					</div>
-					<div class="select_main">
-					<div class="select_1">
-
-							<select class="form-control" name="kms_yr" id="kms_yr">
-
-								<option value ="">Please Select KMS Year</option>
-
-								<?php
-
-									foreach($kms_yr as $row){ ?>
-
-										<option value="<?php echo $row->sl_no ?>"><?php echo $row->kms_yr; ?></option>
-									<?php
-										}
-									?>
-
-							</select>
-
-					</div>
-					
-
-					<div class="select_2" > 
-
-						<select class="form-control" name="branch_id" id="test" style="display:none" >
-							<option value="" >Please Select Branch Name</option>
-							<?php foreach($branch_data as $branch){ ?>
-								<option value="<?php echo $branch->id; ?>" ><?php echo $branch->branch_name; ?></option>
-							<?php } ?>
-						</select>
-
-					</div>
-					</div>
-					
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
 					</div>
-					
 				</form>
 			</div>
 		</div>
@@ -138,14 +104,14 @@
 <!--===============================================================================================-->
 	<script src="<?php echo base_url("/assets/login/js/main.js")?>"></script>
 
-	<script>
-	$('#user_id').keyup(function(e) { // <--- THIS IS THE CHANGE
+	<!--<script>
+	/*$('#user_id').keyup(function(e) { // <--- THIS IS THE CHANGE
  
      var user_id = $('#user_id').val();
 	 
       $.ajax({
 	  type: "POST",
-	  url: "<?php echo site_url("User_Login/check_user") ?>",
+	  url: "<?php //echo site_url("Payroll_Login/check_user") ?>",
 	  data: {user_id:user_id}, 
 	  dataType: "html",
 	  success: function(data){
@@ -159,10 +125,10 @@
 	 // error: function() { alert("Error posting feed."); }
     });
 
-    });
-  </script>
+    });*/
+  </script>--->
 
-	<script>
+	<!--<script>
 		$(document).ready(function(){
 			$("#login").on('submit',function(){
 
@@ -175,7 +141,7 @@
 			});
 		});
 
-	</script>
+	</script>-->
 </body>
 </html>
 

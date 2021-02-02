@@ -3,9 +3,40 @@
 
 	class Login_Process extends CI_Model{
 
-		public function f_select_password($user_id){
+		public function f_get_particulars($table_name, $select=NULL, $where=NULL, $flag) {
+
+			if(isset($select)) {
+
+				$this->db->select($select);
+
+			}
+
+			if(isset($where)) {
+
+				$this->db->where($where);
+
+			}
+
+			$result		=	$this->db->get($table_name);
+
+			if($flag == 1) {
+
+				return $result->row();
+				
+			}else {
+
+				return $result->result();
+
+			}
+
+		}
+
+		public function f_select_password($user_id){		//Check if password exits
+
 			$this->db->select('password,user_status');
+
 			$this->db->where('user_id',$user_id);
+			
 			$data=$this->db->get('md_users');
 
 			if($data->num_rows() > 0 )
@@ -18,15 +49,24 @@
 			}
 		}
 
-		public function f_insert_audit_trail($user_id){
+		public function f_insert_audit_trail($user_id){				//Insert audit trail when user logs in
 
 			$time = date("Y-m-d h:i:s");
+
 			$pcaddr = $_SERVER['REMOTE_ADDR'];
 
 			$value = array('login_dt'=> $time,
-				       'user_id' => $user_id,
+				       	   'user_id' => $user_id,
 			      	       'terminal_name'=>$pcaddr);
 			$this->db->insert('td_audit_trail',$value);
+		}
+
+		public function f_update_audit_trail($user_id){				//update audit trail when user logs out			
+			$time = date("Y-m-d h:i:s");
+			$sl_no= $this->session->userdata('sl_no')->sl_no;
+			$value= array('logout'=>$time);
+			$this->db->where('sl_no',$sl_no);
+			$this->db->update('td_audit_trail',$value);
 		}
 
 		public function f_get_user_inf($user_id){
@@ -44,13 +84,13 @@
 			$data=$this->db->get();
 			return $data->row();
 		}
-		public function f_get_branch_list(){
+		/*public function f_get_branch_list(){
 			$this->db->select('*');
 			$this->db->from('md_branch');
 			$this->db->order_by("branch_name", "asc");
 			$data=$this->db->get();
 			return $data->result();
-		}
+		}*/
 
 		public function f_get_dist_inf($dist_cd){
 
@@ -86,13 +126,7 @@
 			return $data->result();
 		}
 
-		public function f_update_audit_trail($user_id){
-			$time = date("Y-m-d h:i:s");
-			$sl_no= $this->session->userdata('sl_no')->sl_no;
-			$value= array('logout'=>$time);
-			$this->db->where('sl_no',$sl_no);
-			$this->db->update('td_audit_trail',$value);
-		}
+		
 		
 		public function f_get_parameters($sl_no){
 			$this->db->select('param_value');
