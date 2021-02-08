@@ -104,8 +104,8 @@
                           
                             <div class="sub-dropdown">
                                 
-                                <!--<a href="<?php echo site_url("source");?>">Company</a>
-                                <a href="<?php echo site_url("measurement");?>">Unit</a>
+                                <a href="<?php echo site_url("vls");?>">Set Parameters</a>
+                                <!--<a href="<?php echo site_url("measurement");?>">Unit</a>
                                 <a href="<?php echo site_url("crCatg");?>">Credit Note Category</a>
                                 <a href="<?php echo site_url("material");?>">Product</a>
                                 <a href="<?php echo site_url("category");?>">Sale Rate Category</a>

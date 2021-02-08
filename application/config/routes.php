@@ -54,11 +54,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //For Payroll
-$route['payroll'] = 'payrolls';
+/*$route['payroll'] = 'payrolls';
 $route['payroll/approve/(:any)'] = 'payrolls/approves/f_$1';
 $route['payroll/approve'] = 'payrolls/approves/f_approve';
 $route['payroll/(:any)/(:any)'] = 'payrolls/f_$1_$2';
 $route['payroll/(:any)'] = 'payrolls/f_$1';
+$route['payroll/(:any)'] = 'payrolls/f_$1';*/
+$route['vlsedt'] = 'admin/parameter_edit'; 
+$route['vls'] = 'admin/parameter'; 
 
 //For Paddy
 $route['paddy'] = 'paddys';
