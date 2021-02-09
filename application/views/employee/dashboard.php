@@ -4,7 +4,7 @@
             
             <div class="col-lg-9 col-sm-12">
 
-                <h1><strong>Employee</strong></h1>
+                <h1><strong>Active Employee List</strong></h1>
 
             </div>
 
@@ -14,7 +14,7 @@
 
             <h3>
 
-                <small><a href="<?php echo site_url("payroll/employee/add");?>" class="btn btn-primary" style="width: 100px;">Add</a></small>
+                <small><a href="<?php echo site_url("emadst");?>" class="btn btn-primary" style="width: 100px;">Add</a></small>
                 <span class="confirm-div" style="float:right; color:green;"></span>
 
             </h3>
@@ -25,12 +25,12 @@
 
                     <tr>
                     
-                        <th>Sl No.</th>
+                        <th>Sl. No.</th>
                         <th>Name</th>
                         <th>Category</th>
-                        <th>Designation</th>
-                        <th>Email Id</th>
-                        <th>Option</th>
+                        <th>Department</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
 
                     </tr>
 
@@ -64,12 +64,11 @@
                                     }
                                 ?>
                                 </td>
-                                <td><?php echo $e_dtls->designation; ?></td>
-                                <td><?php echo $e_dtls->email; ?></td>
+                                <td><?php echo $e_dtls->department; ?></td>
                                 
                                 <td>
                                 
-                                    <a href="employee/edit?emp_code=<?php echo $e_dtls->emp_code; ?>" 
+                                    <a href="estem?emp_code=<?php echo $e_dtls->emp_code; ?>" 
                                         data-toggle="tooltip"
                                         data-placement="bottom" 
                                         title="Edit"
@@ -79,13 +78,15 @@
                                         
                                     </a>
 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
 
-                                    <!--<button 
+                                <td>
+
+                                    <button 
                                         type="button"
                                         class="delete"
-                                        id="<?php echo $e_dtls->emp_no; ?>"
-                                        date="<?php echo $e_dtls->trans_dt; ?>"
+                                        id="<?php echo $e_dtls->emp_code; ?>"
+                                        
                                         data-toggle="tooltip"
                                         data-placement="bottom" 
                                         title="Delete"
@@ -94,7 +95,7 @@
 
                                         <i class="fa fa-trash-o fa-2x" style="color: #bd2130"></i>
 
-                                    </button>-->
+                                    </button>
                                     
                                 </td>
 
@@ -122,9 +123,9 @@
                         <th>Sl No.</th>
                         <th>Name</th>
                         <th>Category</th>
-                        <th>Designation</th>
-                        <th>Email Id</th>
-                        <th>Option</th>
+                        <th>Department</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
 
                     </tr>
                 
@@ -142,14 +143,13 @@
 
         $('.delete').click(function () {
 
-            var id = $(this).attr('id'),
-                date = $(this).attr('date');
+            var id = $(this).attr('id');
 
             var result = confirm("Do you really want to delete this record?");
 
             if(result) {
 
-                window.location = "<?php echo site_url('payroll/employee/delete?empcd="+id+"&saldate="+date+"');?>";
+                window.location = "<?php echo site_url('dstf?empcd="+id+"');?>";
 
             }
             

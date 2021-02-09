@@ -39,5 +39,33 @@
 			return;
 
 		}
+
+		//For inserting row
+		public function f_insert($table_name, $data_array) {
+
+			$this->db->insert($table_name, $data_array);
+
+			return;
+
+		}
+
+		//For Deliting row
+		public function f_delete($table_name, $where) {
+
+			$this->db->delete($table_name, $where);
+
+			return;
+
+		}
+
+		public function f_count_emp($emp_code){
+
+			$result = $this->db->query("select count(*)count_emp from md_employee where emp_code = $emp_code");
+
+			//$result	=	$this->db->query($sql);
+
+			return $result->row();
+		}
+
     }
 ?>

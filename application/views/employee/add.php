@@ -4,12 +4,28 @@
 
             <form method="POST" 
                 id="form"
-                action="<?php echo site_url("payroll/employee/add");?>" >
+                action="<?php echo site_url("emadst");?>" >
 
                 <div class="form-header">
                 
                     <h4>Employee Details</h4>
                 
+                </div>
+
+                <div class="form-group row">
+
+                    <label for="emp_code" class="col-sm-2 col-form-label">Employee Code:</label>
+
+                    <div class="col-sm-10">
+
+                        <input type="text"
+                                name="emp_code"
+                                class="form-control required"
+                                id="emp_code"
+                        />
+
+                    </div>
+
                 </div>
 
                 <div class="form-group row">
@@ -25,18 +41,6 @@
                         />
 
                     </div>
-
-                    <!-- <label for="emp_code" class="col-sm-2 col-form-label">Sl No.:</label>
-
-                    <div class="col-sm-2">
-
-                        <input type="text"
-                                name="emp_code"
-                                class="form-control required"
-                                id="emp_code"
-                        />
-
-                    </div> -->
 
                 </div>
 
@@ -72,6 +76,22 @@
 
                 <div class="form-group row">
 
+                    <label for="join_dt" class="col-sm-2 col-form-label">Date of Birth:</label>
+
+                    <div class="col-sm-4">
+
+                        <input type="date"
+                            class="form-control"
+                            name="dob"
+                            id="dob"
+                        />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
                     <label for="join_dt" class="col-sm-2 col-form-label">Joining Date:</label>
 
                     <div class="col-sm-4">
@@ -80,7 +100,6 @@
                             class="form-control"
                             name="join_dt"
                             id="join_dt"
-                            value="<?php echo date('Y-m-d');?>"
                         />
 
                     </div>
@@ -93,7 +112,6 @@
                             class="form-control"
                             name="ret_dt"
                             id="ret_dt"
-                            value="<?php echo date('Y-m-d');?>"
                         />
 
                     </div>
@@ -147,7 +165,7 @@
                     <div class="col-sm-4">
 
                         <input type="text"
-                            class= "form-control"
+                            class= "form-control required"
                             name = "department"
                             id   = "department"
                         />
@@ -164,8 +182,8 @@
 
                         <textarea type="text"
                             class= "form-control"
-                            name = "location"
-                            id   = "location"
+                            name = "emp_addr"
+                            id   = "emp_addr"
                         ></textarea>
 
                     </div>
@@ -174,111 +192,30 @@
 
                 <div class="form-header">
                 
-                    <h4>Salary Details</h4>
+                    <h4>Basic Pay</h4>
                 
                 </div>
 
                 <div class="form-group row">
 
-                    <label for="band_pay" class="col-sm-2 col-form-label band_pay">Basic Pay:</label>
+                    <label for="basic_pay" class="col-sm-2 col-form-label band_pay">Basic Pay:</label>
 
                     <div class="col-sm-10">
 
-                        <input type="text"
+                        <input type="number"
                             class= "form-control required"
-                            name = "band_pay"
-                            id   = "band_pay"
+                            name = "basic_pay"
+                            id   = "basic_pay"
+                            value = 0
                         />
 
                     </div>
 
                 </div> 
-
-                <div class="form-group row grade_pay">
-
-                    <label for="grade_pay" class="col-sm-2 col-form-label">Grade Pay:</label>
-
-                    <div class="col-sm-10">
-
-                        <input type="text"
-                            class= "form-control"
-                            name = "grade_pay"
-                            id   = "grade_pay"
-                        />
-
-                    </div>
-
-                </div> 
-
-                <div class="form-group row grade_pay">
-
-                    <label for="ma" class="col-sm-2 col-form-label">Medical Allowance:</label>
-
-                    <div class="col-sm-10">
-
-                        <input type="text"
-                            class= "form-control"
-                            name = "ma"
-                            id   = "ma"
-                        />
-
-                    </div>
-
-                </div> 
-
-                <div class="form-group row">
-
-                    <label for="p_tax_id" class="col-sm-2 col-form-label">P-TAX:</label>
-
-                    <div class="col-sm-10">
-                        
-                        <input type="text"
-                            class= "form-control"
-                            name = "p_tax_id"
-                            id   = "p_tax_id"
-                        />
-
-                    </div>
-
-                </div> 
-
-                <div class="form-group row">
-
-                    <label for="ir_pay" class="col-sm-2 col-form-label">IR:</label>
-
-                    <div class="col-sm-10">
-
-                        <input type="text"
-                            class= "form-control required"
-                            name = "ir_pay"
-                            id   = "ir_pay"
-                        />
-
-                    </div>
-
-                </div> 
-
-                <div class="form-group row">
-
-                    <label for="d_flag" class="col-sm-2 col-form-label">Deduction Flag:</label>
-                    
-                    <div class="radio">
-                        
-                        <label><input type="radio" value="Y" name="d_flag" checked>Yes</label>
-                    
-                    </div>
-
-                    <div class="radio">
-
-                        <label><input type="radio" value="N" name="d_flag">No</label>
-
-                    </div>
-
-                </div>
 
                 <div class="form-header">
                 
-                    <h4>Banking Details</h4>
+                    <h4>Bank & Other Details</h4>
                 
                 </div> 
 
@@ -302,7 +239,7 @@
 
                     <label for="bank_ac_no" class="col-sm-2 col-form-label">A/C No.:</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
 
                         <input type="text"
                             class= "form-control"
@@ -312,18 +249,42 @@
 
                     </div>
 
-                </div> 
-
-                <div class="form-group row">
-
                     <label for="pf_ac_no" class="col-sm-2 col-form-label">PF A/C No.:</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
 
                         <input type="text"
                             class= "form-control"
                             name = "pf_ac_no"
                             id   = "pf_ac_no"
+                        />
+
+                    </div>
+
+                </div> 
+
+                <div class="form-group row">
+
+                    <label for="pan_no" class="col-sm-2 col-form-label">Pan No.:</label>
+
+                    <div class="col-sm-4">
+
+                        <input type="text"
+                            class= "form-control"
+                            name = "pan_no"
+                            id   = "pan_no"
+                        />
+
+                    </div>
+
+                    <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No.:</label>
+
+                    <div class="col-sm-4">
+
+                        <input type="text"
+                            class= "form-control required"
+                            name = "aadhar"
+                            id   = "aadhar"
                         />
 
                     </div>
@@ -348,9 +309,9 @@
 
 <script>
 
-    $("#form").validate();
+    //$("#form").validate();
 
-    $(document).ready(function(){
+    /*$(document).ready(function(){
 
         $('#emp_catg').change(function(){
 
@@ -368,6 +329,28 @@
                 $('.grade_pay').hide();
 
             }
+
+        });
+
+    });*/
+
+    $(document).ready(function(){
+        $("#emp_code").change(function(){
+
+            var emp_code =  $("#emp_code").val();
+
+            $.get("admin/emp_dtls",{emp_code:emp_code},function(data){
+
+				if(data > 0){
+					$("#emp_code").val('');
+					$("#emp_code").css("border","1px solid red");
+					alert("Employee Code already in use!");
+					return false;
+				}else{
+					$("#emp_code").css("border","1px solid #ccc");
+					return true;	
+				}
+			});
 
         });
 

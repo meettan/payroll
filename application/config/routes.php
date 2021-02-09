@@ -62,51 +62,19 @@ $route['payroll/(:any)'] = 'payrolls/f_$1';
 $route['payroll/(:any)'] = 'payrolls/f_$1';*/
 $route['vlsedt'] = 'admin/parameter_edit'; 
 $route['vls'] = 'admin/parameter'; 
-
-//For Paddy
-$route['paddy'] = 'paddys';
-$route['paddy/approve/(:any)'] = 'paddys/approves/f_approve_$1';
-$route['paddy/(:any)/(:any)'] = 'paddys/f_$1_$2';
-$route['paddy/(:any)'] = 'paddys/f_$1';
-
-//For Fertilizer
-$route['source']           = 'fertilizer/fertilizer/company';                       //Company Master
-$route['measurement']      = 'fertilizer/fertilizer/unit';                          //Unit Master
-$route['material']         = 'fertilizer/fertilizer/product';                       //Product Master
-$route['customer']         = 'fertilizer/fertilizer/soceity';                       //Society Master
-$route['category']         = 'fertilizer/fertilizer/category';   
-$route['key/(:any)']       = 'fertilizer/$1';                                       //Fertilizer        
-$route['rateslab']         = 'fertilizer/fertilizer/sale_rate';                     //Sale Rate Salb
-$route['trade/(:any)']     = 'fertilizer/sale/$1';                                  //Sale
-$route['stock/(:any)']     = 'fertilizer/purchase/$1';                              //Purchase
-$route['adv/(:any)']       = 'fertilizer/advance/$1'; 
-$route['crCatg']           = 'fertilizer/fertilizer/cr_note_catg';                  //credit note category
-$route['socpay/(:any)']    = 'fertilizer/society_payment/$1';                       //Advance
-$route['drcrnote/(:any)']  = 'fertilizer/drcrnote/$1'; 
-$route['compay/(:any)']    = 'fertilizer/company_payment/$1';
-$route['BNK']              = 'fertilizer/fertilizer/bank';                           //Bank Master
-$route['virtualpnt/(:any)']= 'fertilizer/virtual_stk_point/$1';                          
-$route['fert/rep/(:any)']   = 'fertilizer/report/$1';                               //Report                
-//For Add New
-
-//$route['add_new/(:any)/(:any)'] = 'paddys/add_new/f_$1_$2';
-$route['add_new/(:any)'] = 'paddys/add_new/f_$1';
-
-//For Transactions 
-$route['transactions/(:any)'] = 'paddys/transactions/f_$1';
-
-//For Payments 
-$route['payment/(:any)'] = 'paddys/payment/f_$1';
-$route['payment/(:any)/(:any)'] = 'paddys/payment/f_$1_$2';
-
-//For Report
-$route['report/(:any)'] = 'paddys/reports/f_$1';
+$route['stfemp'] = 'admin/employee';
+$route['emadst'] = 'admin/employee_add';
+$route['dstf'] = 'admin/employee_delete';
+$route['estem'] = 'admin/employee_edit';
 
 
-//For Admin
-$route['admin'] = 'admins';
-$route['admin/(:any)/(:any)'] = 'admins/f_$1_$2';
-$route['admin/(:any)'] = 'admins/f_$1';
+ 
+
+ 
+ 
+
+
+ 
 
 //For Profile
 $route['profile'] = 'profiles';

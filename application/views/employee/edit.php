@@ -4,7 +4,7 @@
 
     <form method="POST" 
         id="form"
-        action="<?php echo site_url("payroll/employee/edit");?>" >
+        action="<?php echo site_url("estem");?>" >
 
         <div class="form-header">
         
@@ -12,11 +12,23 @@
         
         </div>
 
-        <input type="hidden"
-                name="emp_code"
-                id="emp_code"
-                value="<?php echo $employee_dtls->emp_code; ?>"
-        />
+        <div class="form-group row">
+
+            <label for="emp_code" class="col-sm-2 col-form-label">Employee Code:</label>
+
+            <div class="col-sm-10">
+
+                <input type="text"
+                        name="emp_code"
+                        class="form-control required"
+                        id="emp_code"
+                        value="<?php echo $employee_dtls->emp_code; ?>"
+                        readonly
+                />
+
+            </div>
+
+        </div>
 
         <div class="form-group row">
 
@@ -66,6 +78,28 @@
                     </select>   
 
                 </div>
+        </div>
+
+        <div class="form-group row">
+
+            <label for="join_dt" class="col-sm-2 col-form-label">Date of Birth:</label>
+
+            <div class="col-sm-4">
+
+                <input type="date"
+                    class="form-control required"
+                    name="dob"
+                    id="dob"
+                    value="<?php if(isset($employee_dtls->dob)) { 
+                        
+                                    echo $employee_dtls->dob;
+                
+                                }
+                            ?>"
+                />
+
+            </div>
+
         </div>
 
         <div class="form-group row">
@@ -175,10 +209,10 @@
             <div class="col-sm-10">
 
                 <textarea type="text"
-                    class= "form-control"
-                    name = "location"
-                    id   = "location"
-                ><?php echo $employee_dtls->location; ?></textarea>
+                    class= "form-control required"
+                    name = "emp_addr"
+                    id   = "emp_addr"
+                ><?php echo $employee_dtls->emp_addr; ?></textarea>
 
             </div>
 
@@ -186,116 +220,31 @@
 
         <div class="form-header">
         
-            <h4>Salary Details</h4>
+            <h4>Basic Pay</h4>
         
         </div>
 
         <div class="form-group row">
 
-            <label for="band_pay" class="col-sm-2 col-form-label band_pey">Basic Pay:</label>
+            <label for="basic_pay" class="col-sm-2 col-form-label band_pey">Basic Pay:</label>
 
             <div class="col-sm-10">
 
                 <input type="text"
                     class= "form-control required"
-                    name = "band_pay"
-                    id   = "band_pay"
-                    value="<?php echo $employee_dtls->band_pay; ?>"
+                    name = "basic_pay"
+                    id   = "basic_pay"
+                    value="<?php echo $employee_dtls->basic_pay; ?>"
                 />
 
             </div>
 
-        </div> 
+        </div>  
 
-        <div class="form-group row grade_pey">
-
-            <label for="grade_pay" class="col-sm-2 col-form-label">Grade Pay:</label>
-
-            <div class="col-sm-10">
-
-                <input type="text"
-                    class= "form-control"
-                    name = "grade_pay"
-                    id   = "grade_pay"
-                    value="<?php echo $employee_dtls->grade_pay; ?>"
-                />
-
-            </div>
-
-        </div> 
-
-        <div class="form-group row grade_pey">
-
-            <label for="ma" class="col-sm-2 col-form-label">Medical Allowance:</label>
-
-            <div class="col-sm-10">
-
-                <input type="text"
-                    class= "form-control"
-                    name = "ma"
-                    id   = "ma"
-                    value="<?php echo $employee_dtls->ma; ?>"
-                />
-
-            </div>
-
-        </div> 
-
-        <div class="form-group row">
-
-            <label for="p_tax_id" class="col-sm-2 col-form-label">P-TAX:</label>
-
-            <div class="col-sm-10">
-
-                <input type="text"
-                    class= "form-control"
-                    name = "p_tax_id"
-                    id   = "p_tax_id"
-                    value="<?php echo $employee_dtls->p_tax_id; ?>"
-                />
-
-            </div>
-
-        </div> 
-
-        <div class="form-group row">
-
-            <label for="ir_pay" class="col-sm-2 col-form-label">IR:</label>
-
-            <div class="col-sm-10">
-
-                <input type="text"
-                    class= "form-control required"
-                    name = "ir_pay"
-                    id   = "ir_pay"
-                    value="<?php echo $employee_dtls->ir_pay; ?>"
-                />
-
-            </div>
-
-        </div>
-
-        <div class="form-group row">
-
-            <label for="d_flag" class="col-sm-2 col-form-label">Deduction Flag:</label>
-            
-            <div class="radio">
-                
-                <label><input type="radio" value="Y" name="d_flag" <?php echo ($employee_dtls->deduction_flag == 'Y')? 'checked':'' ; ?> > Yes </label>
-            
-            </div>
-
-            <div class="radio">
-
-                <label><input type="radio" value="N" name="d_flag" <?php echo ($employee_dtls->deduction_flag  == 'N')? 'checked':'' ; ?> > No </label>
-
-            </div>
-
-        </div> 
 
         <div class="form-header">
         
-            <h4>Banking Details</h4>
+            <h4>Bank & Other Details</h4>
         
         </div> 
 
@@ -349,6 +298,36 @@
             </div>
 
         </div> 
+
+        <div class="form-group row">
+
+            <label for="pan_no" class="col-sm-2 col-form-label">Pan No.:</label>
+
+            <div class="col-sm-4">
+
+                <input type="text"
+                    class= "form-control"
+                    name = "pan_no"
+                    id   = "pan_no"
+                    value="<?php echo $employee_dtls->pan_no; ?>"
+                />
+
+            </div>
+
+            <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No.:</label>
+
+            <div class="col-sm-4">
+
+                <input type="text"
+                    class= "form-control required"
+                    name = "aadhar"
+                    id   = "aadhar"
+                    value="<?php echo $employee_dtls->aadhar_no; ?>"
+                />
+
+            </div>
+
+        </div>
 
         <div class="form-group row">
 
