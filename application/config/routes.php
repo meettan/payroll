@@ -66,6 +66,8 @@ $route['stfemp'] = 'admin/employee';
 $route['emadst'] = 'admin/employee_add';
 $route['dstf'] = 'admin/employee_delete';
 $route['estem'] = 'admin/employee_edit';
+$route['slrydtl'] = 'salary/earning';
+$route['slryad'] = 'salary/earning_add';
 
 
  

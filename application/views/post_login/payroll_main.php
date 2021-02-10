@@ -124,7 +124,7 @@
                     <div class="dropdown">
                         <div class="dropbtn">
                             <i class="fa fa-university" aria-hidden="true"></i>
-                                Payroll
+                                Salary
                               
                             <i class="fa fa-angle-down"></i>
                         </div>
@@ -148,9 +148,10 @@
                         <?php if( $this->session->userdata['loggedin']['ho_flag']=="Y"){?> 
                             <div class="dropdown-content">
                             <div class="sub-dropdown">
-                            <a href="<?php echo site_url("adv/company_advance");?>">Advance To Company</a>
-                            <a href="<?php echo site_url("drcrnote/cr_note");?>">Credit Note</a>
-                            <a href="<?php echo site_url("compay/company_payment");?>">Company Payment</a>
+                            <!-- <a href="<?php echo site_url("adv/company_advance");?>">Earning Master</a> -->
+                            <a href="<?php echo site_url("slrydtl");?>">Earning Master</a>
+                            <!-- <a href="<?php echo site_url("drcrnote/cr_note");?>">Credit Note</a>
+                            <a href="<?php echo site_url("compay/company_payment");?>">Company Payment</a> -->
                              
                             </div>
                           

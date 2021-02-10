@@ -48,7 +48,7 @@
 
                     <label for="emp_catg" class="control-lebel col-sm-2 col-form-label">Category:</label>
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
 
                             <select
                                 class="form-control required"
@@ -72,6 +72,35 @@
                             </select>   
 
                         </div>
+
+
+                        <label for="emp_dist" class="control-lebel col-sm-2 col-form-label">Branch:</label>
+
+<div class="col-sm-4">
+
+    <select
+        class="form-control required"
+        name="emp_dist"
+        id="emp_dist"
+    >
+
+        <option value="">Select District</option>
+
+        <?php foreach($dist_dtls as $dist) {
+
+        ?>
+            <option value="<?php echo $dist->district_code ?>" ><?php echo $dist->district_name; ?></option>
+
+        <?php
+
+        }
+
+        ?>
+
+    </select>   
+
+</div>
+
                 </div>
 
                 <div class="form-group row">
