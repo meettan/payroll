@@ -55,7 +55,7 @@
                                     if($e_list->emp_catg == $catg->category_code) {
 
                         ?>        
-                                <option value='{"emp_code":"<?php echo $e_list->emp_code ?>","emp_name":"<?php echo $e_list->emp_name; ?>"}'
+                                <option value="<?php echo $e_list->emp_code ?>"
 
                                 catg="<?php echo $catg->category_type; ?>"            
                                 ><?php echo $e_list->emp_name; ?></option>
@@ -139,7 +139,7 @@
                             name = "basic"
                             id   = "basic"
                             value = 0.00	
-                        />
+                       readonly />
 
                     </div>
 
@@ -253,4 +253,43 @@
 
     });
     
+</script>
+
+
+<script>
+	
+	$(document).ready(function(){
+	
+	
+		var basic  = 0.00;
+		
+		$('#emp_code').change(function(){
+	
+			$.get( 
+	
+				'<?php echo site_url("Salary/f_sal_dtls");?>',
+				{ 
+	
+					emp_code: $(this).val()
+                    // rbt_add =$('#rbt_add').val() 	
+				}
+	
+			)
+			.done(function(data){
+	
+		
+				var parseData = JSON.parse(data);
+				// basic=$('#basic').val() 
+                console.log(parseData );
+                $('#basic').val(parseData.basic_pay) 
+                $('#da').val(parseData.da) 
+                $('#hra').val(parseData.hra) 
+                $('#ma').val(parseData.ma) 
+				
+			});
+	
+		});
+	
+	});
+	
 </script>

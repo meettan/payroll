@@ -60,6 +60,19 @@
 
 		}
 
+
+		public function f_sal_dtls($emp_code) // For Jquery
+        {
+
+            $sql = $this->db->query("SELECT a.basic_pay,basic_pay * (select param_value from md_parameters where sl_no=1)/100 as da,
+			basic_pay * (select param_value from md_parameters where sl_no=2)/100 as hra,
+			(select param_value from md_parameters where sl_no=3)ma
+			FROM md_employee a 
+			WHERE a.emp_code ='$emp_code'");
+            return $sql->row();
+
+		}
+
 /*****************Retive Earning List********************** */
 public function f_get_earning() {
 

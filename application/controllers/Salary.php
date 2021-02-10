@@ -25,7 +25,19 @@ public function earning() {
 
 }
 
+public function f_sal_dtls()
+{
 
+    $emp_code = $this->input->get('emp_code');
+    // $emp_code =$this->input->post('emp_code');
+    // echo ($emp_code);
+    // die();
+    $data = $this->Salary_Process->f_sal_dtls($emp_code);
+    // echo $this->db->last_query();
+    // die();
+    echo json_encode($data);
+
+}
 public function earning_add() {
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
