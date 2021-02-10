@@ -42,97 +42,66 @@ public function earning_add() {
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         
-        $sal_month  =   $this->input->post('month');
+        // $sal_month  =   $this->input->post('month');
 
-        $year       =   $this->input->post('year');
+        // $year       =   $this->input->post('year');
 
-        $emp_dtls   =   json_decode($this->input->post('emp_cd'));
+        // $emp_dtls   =   json_decode($this->input->post('emp_code'));
 
-        $emp_cd     =   $emp_dtls->empid;
+        // $emp_cd     =   $emp_dtls->empid;
 
-        $emp_name   =   $emp_dtls->empname;
+        // $emp_name   =   $emp_dtls->empname;
+        $emp_cd   =   $this->input->post('emp_code');
 
         $category   =   $this->input->post('category');
 
-        $gen_adv    =   $this->input->post('gen_adv');
+        $basic    =   $this->input->post('basic');
 
-        $gen_intt   =   $this->input->post('gen_intt');
+        $da   =   $this->input->post('da');
 
-        $fest_adv   =   $this->input->post('fest_adv');
+        $hra   =   $this->input->post('hra');
 
-        $lic        =   $this->input->post('lic');
+        $ma        =   $this->input->post('ma');
 
-        $itax       =   $this->input->post('itax');
+        $oa       =   $this->input->post('oa');
 
         //For Current Date
         $sal_date   =   $_SESSION['sys_date'];
    
-        if(!isset($gen_adv) || !isset($gen_intt) || !isset($fest_adv) || !isset($lic) || !isset($itax)) {
+       
 
-            $data_array = array (
-
-                "sal_yr"       =>  $year,
-
-                "sal_month"    =>  $sal_month,
-
-                "sal_date"     =>  $sal_date,
-
-                "emp_cd"       =>  $emp_cd,
-
-                "emp_name"     =>  $emp_name,
-
-                "emp_catg"     =>  $category,
-
-                "gen_adv"      =>  0,
-
-                "gen_intt"     =>  0,
-
-                "festival_adv" =>  0,
-
-                "lic"          =>  0,
-
-                "itax"         =>  0,
-
-                "created_by"   =>  $this->session->userdata('loggedin')->user_name,
-
-                "created_dt"   =>  date('Y-m-d h:i:s')
-
-            );  
-
-        }
-
-        else {
+        
 
         $data_array = array (
 
-        "sal_yr"       =>  $year,		
+        // "sal_yr"       =>  $year,		
 
-                "sal_month"    =>  $sal_month,
+        //         "sal_month"    =>  $sal_month,
 
-                "sal_date"     =>  $sal_date,
+                "effective_date"     =>  $sal_date,
 
-                "emp_cd"       =>  $emp_cd,
+                "emp_code"       =>  $emp_cd,
 
-                "emp_name"     =>  $emp_name,
+                // "emp_name"     =>  $emp_name,
 
-                "emp_catg"     =>  $category,
+                // "emp_catg"     =>  $category,
 
-                "gen_adv"      =>  $gen_adv,
+                "basic_pay"      =>  $basic,
 
-                "gen_intt"     =>  $gen_intt,
+                "da_amt"     =>  $da,
 
-                "festival_adv" =>  $fest_adv,
+                "hra_amt" =>  $hra,
 
-                "lic"          =>  $lic,
+                "med_allow"          =>  $ma,
 
-                "itax"         =>  $itax,
+                "othr_allow"         =>  $oa,
 
                 "created_by"   =>  $this->session->userdata('loggedin')->user_name,
 
                 "created_dt"   =>  date('Y-m-d h:i:s')
 
             );
-        }
+        
 
         $this->Salary_Process->f_insert('td_income', $data_array);
 

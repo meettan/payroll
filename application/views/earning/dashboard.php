@@ -28,11 +28,7 @@
                     <!-- <th>Category</th> -->
                     <th>Effective Date</th>
                     <th>Basic Pay</th>
-                    <!-- <th>DA</th>
-                    <th>HRA</th>
-                    <th>Medical Allownce</th>
-                    <th>Other Allownce</th> -->
-            <!--	<th>Others</th>  -->
+                  
                     <th>Option</th>
 
                 </tr>
@@ -58,10 +54,7 @@
                             <td><?php echo date("d-m-Y", strtotime($e_dtls->effective_date)); ?></td>
                             <td><?php echo $e_dtls->basic_pay; ?></td>
 
-                            <!-- <td><?php echo $e_dtls->da_amt; ?></td>
-                            <td><?php echo $e_dtls->hra_amt; ?></td>
-                            <td><?php echo $e_dtls->med_allow; ?></td>
-                            <td><?php echo $d_dtls->othr_allow; ?></td> -->
+                           
             <!--<td><//?php echo $d_dtls->other_deduction;?></td>-->
                             <td>
                             
@@ -119,11 +112,7 @@
                     <!-- <th>Category</th> -->
                     <th>Effective Date</th>
                     <th>Basic Pay</th>
-                    <!-- <th>DA</th>
-                    <th>HRA</th>
-                    <th>Medical Allownce</th>
-                    <th>Other Allownce</th> -->
-            <!--	<th>Others</th>  -->
+                    
                     <th>Option</th>
 
                 </tr>

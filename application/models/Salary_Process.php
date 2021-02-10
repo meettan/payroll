@@ -83,31 +83,31 @@ public function f_get_earning() {
                                           
     $result		=	$this->db->query($sql);	
     
-    if($result->num_rows() > 0){
+    // if($result->num_rows() > 0){
 
-        foreach($result->result() as $row) {
+    //     foreach($result->result() as $row) {
 
-            $where = array(
+    //         $where = array(
 
-                "emp_code"			=>	$row->emp_cd,
+    //             "emp_code"			=>	$row->emp_cd,
 
-                "effective_date"			=>	$row->sal_date
+    //             "effective_date"			=>	$row->sal_date
 
-            );
+    //         );
 
-            $data[] = $this->f_get_particulars("td_income", NULL, $where, 1);
+    //         $data[] = $this->f_get_particulars("td_income", NULL, $where, 1);
 
-        }
+    //     }
 
-        return $data;
+    //     return $data;
 
-    }
+    // }
     
-    else{
+    // else{
 
-        return false;
+    //     return false;
         
-    }
+    // }
 
 }
 
