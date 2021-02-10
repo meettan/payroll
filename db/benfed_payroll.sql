@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5ubuntu0.5
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 02, 2021 at 12:06 PM
--- Server version: 5.7.33-0ubuntu0.18.04.1
--- PHP Version: 7.2.24-0ubuntu0.18.04.7
+-- Generation Time: Feb 10, 2021 at 12:35 PM
+-- Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -190,9 +192,9 @@ CREATE TABLE `md_branch` (
   `br_manager` varchar(50) NOT NULL,
   `contact_no` varchar(15) NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `created_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_dt` datetime NOT NULL DEFAULT current_timestamp(),
   `modified_by` varchar(50) NOT NULL,
-  `modified_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `modified_dt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -239,10 +241,10 @@ CREATE TABLE `md_category` (
 --
 
 INSERT INTO `md_category` (`category_code`, `category_type`) VALUES
-(1, 'Regular Employee'),
-(2, 'Contractual Employee'),
-(3, 'Daily Wages Employee'),
-(4, 'Contingent Labours');
+(1, 'Govt.Regular Employee'),
+(2, 'Benfed Regular Employee'),
+(3, 'Contractual Employee'),
+(4, 'Daily Wages Employee');
 
 -- --------------------------------------------------------
 
@@ -294,24 +296,21 @@ CREATE TABLE `md_employee` (
   `emp_code` int(11) NOT NULL,
   `emp_name` varchar(100) NOT NULL,
   `emp_catg` int(10) NOT NULL,
+  `emp_dist` int(10) NOT NULL,
+  `dob` date DEFAULT NULL,
   `join_dt` date DEFAULT NULL,
   `ret_dt` date DEFAULT NULL,
   `designation` varchar(50) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
-  `phn_no` int(11) DEFAULT '0',
+  `phn_no` int(11) DEFAULT 0,
   `email` varchar(100) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
   `pan_no` varchar(50) DEFAULT NULL,
+  `aadhar_no` varchar(50) DEFAULT NULL,
+  `emp_addr` text DEFAULT NULL,
   `bank_name` varchar(50) DEFAULT NULL,
   `bank_ac_no` varchar(50) DEFAULT NULL,
   `pf_ac_no` varchar(50) DEFAULT NULL,
-  `deduction_flag` char(1) DEFAULT NULL,
-  `cash_allow` decimal(10,2) DEFAULT NULL,
-  `band_pay` decimal(10,2) DEFAULT NULL,
-  `grade_pay` decimal(10,2) DEFAULT '0.00',
-  `ma` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `p_tax_id` int(11) NOT NULL DEFAULT '0',
-  `ir_pay` decimal(10,2) DEFAULT '0.00',
+  `basic_pay` decimal(10,2) DEFAULT 0.00,
   `created_by` varchar(50) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `emp_status` char(1) DEFAULT 'A',
@@ -323,40 +322,41 @@ CREATE TABLE `md_employee` (
 -- Dumping data for table `md_employee`
 --
 
-INSERT INTO `md_employee` (`emp_code`, `emp_name`, `emp_catg`, `join_dt`, `ret_dt`, `designation`, `department`, `phn_no`, `email`, `location`, `pan_no`, `bank_name`, `bank_ac_no`, `pf_ac_no`, `deduction_flag`, `cash_allow`, `band_pay`, `grade_pay`, `ma`, `p_tax_id`, `ir_pay`, `created_by`, `created_dt`, `emp_status`, `modified_by`, `modified_dt`) VALUES
-(1, 'Sheikh Samsul Islam', 3, '0000-00-00', '0000-00-00', 'A.M.II', ' ', 0, '', ' ', NULL, '', '', '6180', 'Y', '0.00', '20390.00', '4700.00', '300.00', 200, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-02-25 06:53:07'),
-(2, 'Susanta Kr. Chakrabarty', 3, '0000-00-00', '0000-00-00', 'S.A.', ' ', 0, '', ' ', NULL, '', '', '5859', 'Y', '0.00', '20140.00', '3900.00', '300.00', 200, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-10-12 07:37:23'),
-(3, 'Gulshan Gund', 1, '0000-00-00', '0000-00-00', 'S.A.', '', 0, '', '', NULL, '', '', '5859', 'Y', '0.00', '20140.00', '3900.00', '300.00', 200, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:53:14'),
-(4, 'Anutosh Roy', 3, '0000-00-00', '0000-00-00', 'S.A.', '', 0, '', '', NULL, '', '', '5397', 'Y', '0.00', '17610.00', '3900.00', '300.00', 200, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-02-25 06:53:19'),
-(5, 'Bapan Chatterjee', 1, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', ' ', NULL, '', '', '4849', 'Y', '0.00', '16460.00', '2600.00', '300.00', 200, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:53:38'),
-(6, 'Shyamal Samanta', 1, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', ' ', NULL, '', '', '4531', 'Y', '0.00', '15210.00', '2600.00', '300.00', 200, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:54:16'),
-(7, 'Sandip Kumar Das', 1, '0000-00-00', '0000-00-00', 'J.A.', '', 2147483647, 'sandipds007@gmail.com', '', NULL, '', '', '2687', 'Y', '0.00', '8970.00', '2600.00', '300.00', 150, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:21:04'),
-(8, 'Mohan Ram', 1, '0000-00-00', '0000-00-00', 'Driver', '', 0, '', '', NULL, '', '', '2435', 'Y', '0.00', '7980.00', '2600.00', '300.00', 130, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 09:10:30'),
-(9, 'Purnima Samanta', 1, '0000-00-00', '0000-00-00', 'F.W.', ' ', 0, '', ' ', NULL, '', '', '4288', 'Y', '0.00', '13580.00', '2300.00', '300.00', 150, '0.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2019-01-24 07:53:16'),
-(10, 'Jabbar Mullick', 1, '0000-00-00', '0000-00-00', 'F.W.', '', 0, '', '', NULL, '', '', '3710', 'Y', '0.00', '11860.00', '2300.00', '300.00', 150, '0.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2019-01-24 07:56:26'),
-(11, 'Tarak Nath Kar', 1, '1990-09-03', '0000-00-00', 'F.W.', 'COOPERATION', 2147483647, 'taraknathkr@gmail.com', 'SODPUR, P.O. NATAGAR,  KAMARPARA \r\nC.R.ROAD, P.S. GHOLA, DIST. NORTH 24 PARGNAS, KOLKATA 700113', NULL, '', '', '3313', 'Y', '0.00', '11120.00', '2600.00', '300.00', 150, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:55:17'),
-(12, 'Tumpa Majumdar', 1, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', ' ', NULL, '', '', '2395', 'Y', '0.00', '7780.00', '2600.00', '300.00', 150, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:20:08'),
-(13, 'Nemai Ghosh', 1, '2018-09-01', '0000-00-00', 'J.A.', '', 0, '', '', NULL, '', '', '1809', 'Y', '0.00', '6510.00', '2600.00', '300.00', 130, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:32'),
-(14, 'Subrata Ghosh', 1, '2018-04-10', '0000-00-00', 'J.A.', '  ', 0, '', '  ', NULL, '', '', '1809', 'Y', '0.00', '6510.00', '2600.00', '300.00', 130, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:15'),
-(15, 'Rupa Hazra', 1, '2018-04-10', '0000-00-00', 'J.A.                            ', '                                      ', 0, '', '  ', NULL, 'SBI', '33737955234', '1809', 'Y', '0.00', '6510.00', '2600.00', '300.00', 130, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:01'),
-(16, 'Kishor Ghosh', 1, '2018-04-10', NULL, 'S.S.', '                                      ', NULL, NULL, '  ', NULL, '', '', '', 'Y', '0.00', '4900.00', '1800.00', '300.00', 2, '0.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2018-10-31 06:32:32'),
-(17, 'Anamita Sen', 2, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', ' ', NULL, '', '', '', 'N', '0.00', '14330.00', '0.00', '300.00', 110, '0.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-09-29 07:16:07'),
-(18, 'Tumpa Mazumdar', 1, '0000-00-00', NULL, ' S.S.  ', '  ', NULL, NULL, '  ', NULL, '', '', '', 'Y', '0.00', '668.00', '174.00', '29.00', 6, '0.00', 'CONFED', '2018-10-30 10:01:43', 'I', NULL, NULL),
-(19, 'Bamkim Roy Chowdury', 3, '0000-00-00', '0000-00-00', ' ', '', 0, '', '', NULL, '', '33737955234', '', 'N', '0.00', '9000.00', '0.00', '0.00', 0, '0.00', 'CONFED', '2018-11-26 11:00:49', 'A', 'Arka Prosad Sen', '2020-10-12 07:43:16'),
-(20, 'Sambhunath Narua', 3, '2018-11-26', '0000-00-00', ' ', '', 0, '', '', NULL, '', '', '', 'N', '0.00', '8000.00', '0.00', '0.00', 0, '0.00', 'CONFED', '2018-11-26 11:19:57', 'A', 'Arka Prosad Sen', '2020-09-29 07:11:37'),
-(21, 'RAKHI BALA', 2, '2018-11-26', '0000-00-00', ' ', '', 0, '', '', NULL, '', '', '', 'N', '0.00', '10000.00', '0.00', '0.00', 0, '0.00', 'CONFED', '2018-11-26 11:20:36', 'I', 'CONFED', '2019-04-29 06:53:27'),
-(22, 'Subhasis Saha', 1, '2019-11-07', '0000-00-00', 'J.A.', '', 0, 'saha733665@gmail.com', '', NULL, 'SBI', '20198152720', '0.00', 'Y', '0.00', '6510.00', '2600.00', '300.00', 130, '0.00', 'CONFED', '2019-04-02 07:10:19', 'A', 'Arka Prosad Sen', '2020-08-17 08:13:09'),
-(23, 'Arka Prosad Sen', 1, '2019-06-03', '0000-00-00', 'S.S.', 'Despatch', 2147483647, 'akra.sen98of@gmail.com', 'AC-49/1 Deshbandhu nagar, Baguiati, kolkata -700059', NULL, 'State Bank Of India', '38529736696', '', 'Y', '0.00', '5240.00', '1800.00', '300.00', 130, '0.00', 'Tumpa Majumdar', '2019-06-24 06:56:24', 'A', 'Arka Prosad Sen', '2020-08-17 08:10:32'),
-(24, 'Tuhinagshu Ghosh', 2, '2019-06-24', '0000-00-00', 'J.A.', 'ACCOUNTS', 2147483647, 'rana7230@gmail.com', '7/1B, KARUNAMOYEE GHAT ROAD, HARIDEVPUR, KOLKATA - 700082', NULL, 'State Bank Of India', '', '', 'N', '0.00', '13910.00', '0.00', '0.00', 110, '0.00', 'Tumpa Majumdar', '2019-06-24 07:06:08', 'A', 'Arka Prosad Sen', '2020-09-29 07:16:42'),
-(25, 'SFSFSDFD', 4, '2019-07-16', '0000-00-00', 'ASDASD', 'ASDASD', 0, '', 'SADADAD', NULL, 'ASDASDASD', 'ASDASD', 'ASDASD', 'N', '0.00', '0.00', '0.00', '0.00', 0, '0.00', 'Tumpa Majumdar', '2019-07-16 11:00:36', 'A', 'Tumpa Majumdar', '2019-07-29 08:49:54'),
-(100, 'sss', 4, '2019-12-02', '0000-00-00', 'm', '', 0, '', '', NULL, '', '', '', 'Y', '0.00', '9000.00', '4700.00', '300.00', 150, '0.00', NULL, NULL, 'A', 'Tumpa Majumdar', '2019-12-09 11:14:07'),
-(101, 'Subhasish Saha', 3, '2019-11-01', '0000-00-00', 's.s ', '', 0, '', '', NULL, '', '', '', 'Y', '0.00', '980.00', '360.00', '60.00', 0, '0.00', 'Tumpa Majumdar', '2019-11-25 07:15:29', 'A', 'Tumpa Majumdar', '2019-12-24 06:26:38'),
-(102, 'Surojit Banerjee', 1, '2019-12-02', '0000-00-00', 'A.M.-I', 'Paddy Procurement', 2147483647, 'surojit.babin@gmail.com', 'Vill+P.O. Bagdanga, P.S. Kandi, District Murshidabad ,Pin- 742138 ', NULL, 'State Bank Of India', '20020729564', '', 'Y', '0.00', '10680.00', '4700.00', '300.00', 150, '0.00', 'Tumpa Majumdar', '2019-12-13 09:22:08', 'A', 'Arka Prosad Sen', '2020-08-17 08:25:07'),
-(103, 'Arindam Das', 3, '2019-12-02', '0000-00-00', 'A.M.-I', '', 0, '', '', NULL, 'United Bank Of India', '0088010384803', '', 'Y', '0.00', '3043.00', '4700.00', '165.00', 130, '0.00', 'Tumpa Majumdar', '2019-12-24 06:31:03', 'A', 'Arka Prosad Sen', '2020-08-17 08:27:12'),
-(104, 'Anup Chowdhury', 1, '2019-12-02', '0000-00-00', 'D.M', '', 0, '', '', NULL, 'Axix Bank', '916010010383442', '', 'Y', '0.00', '11640.00', '4800.00', '300.00', 150, '0.00', 'Tumpa Majumdar', '2019-12-24 07:35:56', 'A', 'Arka Prosad Sen', '2020-08-17 08:26:38'),
-(105, 'Debashis Debnath', 1, '2019-12-02', '0000-00-00', 'A.M.-II                    ', '', 0, '', '', NULL, 'SBI', '', '', 'Y', '0.00', '8740.00', '3900.00', '300.00', 150, '0.00', 'Tumpa Majumdar', '2019-12-24 07:37:43', 'A', 'Arka Prosad Sen', '2020-08-17 08:22:57'),
-(106, 'Sidhartha Nandi', 1, '2019-12-03', '0000-00-00', 'S.S', '', 0, '', '', NULL, '', '', '', 'Y', '0.00', '7180.00', '1800.00', '300.00', 130, '0.00', 'Tumpa Majumdar', '2019-12-24 07:40:21', 'A', 'Arka Prosad Sen', '2020-07-27 06:13:19'),
-(107, 'Aloke Das', 2, '2020-09-02', '0000-00-00', 'Sub Staff', 'Despatch', 2147483647, '', '36/13/1 Danesh Sk. Lane, P.S.- AJC Bose B. Garden, Howrah, Pin-711109', NULL, 'State Bank Of India', '39667872045', '', 'N', '0.00', '12000.00', '0.00', '0.00', 110, '0.00', 'Arka Prosad Sen', '2020-09-28 06:50:42', 'A', 'Arka Prosad Sen', '2020-10-12 07:28:08');
+INSERT INTO `md_employee` (`emp_code`, `emp_name`, `emp_catg`, `emp_dist`, `dob`, `join_dt`, `ret_dt`, `designation`, `department`, `phn_no`, `email`, `pan_no`, `aadhar_no`, `emp_addr`, `bank_name`, `bank_ac_no`, `pf_ac_no`, `basic_pay`, `created_by`, `created_dt`, `emp_status`, `modified_by`, `modified_dt`) VALUES
+(1, 'Sheikh Samsul Islam', 3, 0, NULL, '0000-00-00', '0000-00-00', 'A.M.II', ' ', 0, '', NULL, NULL, NULL, '', '', '6180', '20390.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-02-25 06:53:07'),
+(2, 'Susanta Kr. Chakrabarty', 3, 0, NULL, '0000-00-00', '0000-00-00', 'S.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '5859', '20140.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-10-12 07:37:23'),
+(3, 'Gulshan Gund', 1, 0, NULL, '0000-00-00', '0000-00-00', 'S.A.', '', 0, '', NULL, NULL, NULL, '', '', '5859', '20140.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:53:14'),
+(4, 'Anutosh Roy', 3, 0, NULL, '0000-00-00', '0000-00-00', 'S.A.', '', 0, '', NULL, NULL, NULL, '', '', '5397', '17610.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-02-25 06:53:19'),
+(5, 'Bapan Chatterjee', 1, 0, NULL, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '4849', '16460.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:53:38'),
+(6, 'Shyamal Samanta', 1, 0, NULL, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '4531', '15210.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:54:16'),
+(7, 'Sandip Kumar Das', 1, 0, NULL, '0000-00-00', '0000-00-00', 'J.A.', '', 2147483647, 'sandipds007@gmail.com', NULL, NULL, NULL, '', '', '2687', '8970.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:21:04'),
+(8, 'Mohan Ram', 1, 0, NULL, '0000-00-00', '0000-00-00', 'Driver', '', 0, '', NULL, NULL, NULL, '', '', '2435', '7980.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 09:10:30'),
+(9, 'Purnima Samanta', 1, 0, NULL, '0000-00-00', '0000-00-00', 'F.W.', ' ', 0, '', NULL, NULL, NULL, '', '', '4288', '13580.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2019-01-24 07:53:16'),
+(10, 'Jabbar Mullick', 1, 0, NULL, '0000-00-00', '0000-00-00', 'F.W.', '', 0, '', NULL, NULL, NULL, '', '', '3710', '11860.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2019-01-24 07:56:26'),
+(11, 'Taraknath Kar', 1, 0, '1980-02-25', '1990-09-01', '2025-05-14', 'SR', 'Cooperation', 2147483647, 'taraknathkr1@gmail.com', 'ATGBHJKOP259A', '012489552', 'dcdcdcdcdcvdsvdvdevde', 'Axis Bank', '012454', '124785963', '11120.00', 'sss', '2018-08-28 00:00:00', 'A', NULL, '2021-02-09 01:10:27'),
+(12, 'Tumpa Majumdar', 1, 0, NULL, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '2395', '7780.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:20:08'),
+(13, 'Nemai Ghosh', 1, 0, NULL, '2018-09-01', '0000-00-00', 'J.A.', '', 0, '', NULL, NULL, NULL, '', '', '1809', '6510.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:32'),
+(14, 'Subrata Ghosh', 1, 0, NULL, '2018-04-10', '0000-00-00', 'J.A.', '  ', 0, '', NULL, NULL, NULL, '', '', '1809', '6510.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:15'),
+(15, 'Rupa Hazra', 1, 0, NULL, '2018-04-10', '0000-00-00', 'J.A.                            ', '                                      ', 0, '', NULL, NULL, NULL, 'SBI', '33737955234', '1809', '6510.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:01'),
+(16, 'Kishor Ghosh', 1, 0, NULL, '2018-04-10', NULL, 'S.S.', '                                      ', NULL, NULL, NULL, NULL, NULL, '', '', '', '4900.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2018-10-31 06:32:32'),
+(17, 'Anamita Sen', 2, 0, NULL, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '', '14330.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-09-29 07:16:07'),
+(18, 'Tumpa Mazumdar', 1, 0, NULL, '0000-00-00', NULL, ' S.S.  ', '  ', NULL, NULL, NULL, NULL, NULL, '', '', '', '668.00', 'CONFED', '2018-10-30 10:01:43', 'I', NULL, NULL),
+(19, 'Bamkim Roy Chowdury', 3, 0, NULL, '0000-00-00', '0000-00-00', ' ', '', 0, '', NULL, NULL, NULL, '', '33737955234', '', '9000.00', 'CONFED', '2018-11-26 11:00:49', 'A', 'Arka Prosad Sen', '2020-10-12 07:43:16'),
+(20, 'Sambhunath Narua', 3, 0, NULL, '2018-11-26', '0000-00-00', ' ', '', 0, '', NULL, NULL, NULL, '', '', '', '8000.00', 'CONFED', '2018-11-26 11:19:57', 'A', 'Arka Prosad Sen', '2020-09-29 07:11:37'),
+(21, 'RAKHI BALA', 2, 0, NULL, '2018-11-26', '0000-00-00', ' ', '', 0, '', NULL, NULL, NULL, '', '', '', '10000.00', 'CONFED', '2018-11-26 11:20:36', 'I', 'CONFED', '2019-04-29 06:53:27'),
+(22, 'Subhasis Saha', 1, 0, NULL, '2019-11-07', '0000-00-00', 'J.A.', '', 0, 'saha733665@gmail.com', NULL, NULL, NULL, 'SBI', '20198152720', '0.00', '6510.00', 'CONFED', '2019-04-02 07:10:19', 'A', 'Arka Prosad Sen', '2020-08-17 08:13:09'),
+(23, 'Arka Prosad Sen', 1, 0, NULL, '2019-06-03', '0000-00-00', 'S.S.', 'Despatch', 2147483647, 'akra.sen98of@gmail.com', NULL, NULL, NULL, 'State Bank Of India', '38529736696', '', '5240.00', 'Tumpa Majumdar', '2019-06-24 06:56:24', 'A', 'Arka Prosad Sen', '2020-08-17 08:10:32'),
+(24, 'Tuhinagshu Ghosh', 2, 0, NULL, '2019-06-24', '0000-00-00', 'J.A.', 'ACCOUNTS', 2147483647, 'rana7230@gmail.com', NULL, NULL, NULL, 'State Bank Of India', '', '', '13910.00', 'Tumpa Majumdar', '2019-06-24 07:06:08', 'A', 'Arka Prosad Sen', '2020-09-29 07:16:42'),
+(25, 'SFSFSDFD', 4, 0, NULL, '2019-07-16', '0000-00-00', 'ASDASD', 'ASDASD', 0, '', NULL, NULL, NULL, 'ASDASDASD', 'ASDASD', 'ASDASD', '0.00', 'Tumpa Majumdar', '2019-07-16 11:00:36', 'A', 'Tumpa Majumdar', '2019-07-29 08:49:54'),
+(100, 'sss', 4, 0, NULL, '2019-12-02', '0000-00-00', 'm', '', 0, '', NULL, NULL, NULL, '', '', '', '9000.00', NULL, NULL, 'A', 'Tumpa Majumdar', '2019-12-09 11:14:07'),
+(101, 'Subhasish Saha', 3, 0, NULL, '2019-11-01', '0000-00-00', 's.s ', '', 0, '', NULL, NULL, NULL, '', '', '', '980.00', 'Tumpa Majumdar', '2019-11-25 07:15:29', 'A', 'Tumpa Majumdar', '2019-12-24 06:26:38'),
+(102, 'Surojit Banerjee', 1, 0, NULL, '2019-12-02', '0000-00-00', 'A.M.-I', 'Paddy Procurement', 2147483647, 'surojit.babin@gmail.com', NULL, NULL, NULL, 'State Bank Of India', '20020729564', '', '10680.00', 'Tumpa Majumdar', '2019-12-13 09:22:08', 'A', 'Arka Prosad Sen', '2020-08-17 08:25:07'),
+(103, 'Arindam Das', 3, 0, NULL, '2019-12-02', '0000-00-00', 'A.M.-I', '', 0, '', NULL, NULL, NULL, 'United Bank Of India', '0088010384803', '', '3043.00', 'Tumpa Majumdar', '2019-12-24 06:31:03', 'A', 'Arka Prosad Sen', '2020-08-17 08:27:12'),
+(104, 'Anup Chowdhury', 1, 0, NULL, '2019-12-02', '0000-00-00', 'D.M', '', 0, '', NULL, NULL, NULL, 'Axix Bank', '916010010383442', '', '11640.00', 'Tumpa Majumdar', '2019-12-24 07:35:56', 'A', 'Arka Prosad Sen', '2020-08-17 08:26:38'),
+(105, 'Debashis Debnath', 1, 0, NULL, '2019-12-02', '0000-00-00', 'A.M.-II                    ', '', 0, '', NULL, NULL, NULL, 'SBI', '', '', '8740.00', 'Tumpa Majumdar', '2019-12-24 07:37:43', 'A', 'Arka Prosad Sen', '2020-08-17 08:22:57'),
+(106, 'Sidhartha Nandi', 1, 0, NULL, '2019-12-03', '0000-00-00', 'S.S', '', 0, '', NULL, NULL, NULL, '', '', '', '7180.00', 'Tumpa Majumdar', '2019-12-24 07:40:21', 'A', 'Arka Prosad Sen', '2020-07-27 06:13:19'),
+(107, 'Aloke Das', 2, 0, NULL, '2020-09-02', '0000-00-00', 'Sub Staff', 'Despatch', 2147483647, '', NULL, NULL, NULL, 'State Bank Of India', '39667872045', '', '12000.00', 'Arka Prosad Sen', '2020-09-28 06:50:42', 'A', 'Arka Prosad Sen', '2020-10-12 07:28:08'),
+(1002, 'Tanmoy Mondal', 2, 0, '1980-02-25', '2007-12-01', '2030-03-31', 'Sr.Software Engg', 'Technical', 2147483647, 'meettan@gmail.com', 'ATGPM8526N', '01125488', '82 Ln Road kolkata - 65', 'Axis Bank', '00124585226', '12478500259', '5000.00', NULL, '2021-02-09 01:12:04', 'A', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -441,6 +441,31 @@ INSERT INTO `md_month` (`id`, `month_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `md_parameters`
+--
+
+CREATE TABLE `md_parameters` (
+  `sl_no` int(11) NOT NULL,
+  `param_desc` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `param_value` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `modified_by` varchar(50) DEFAULT NULL,
+  `modified_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `md_parameters`
+--
+
+INSERT INTO `md_parameters` (`sl_no`, `param_desc`, `param_value`, `modified_by`, `modified_dt`) VALUES
+(1, 'DA Percentage', '3', 'sss', '2021-02-08 07:11:14'),
+(2, 'HRA Percentage', '12', 'sss', '2021-02-08 07:11:09'),
+(3, 'Medical Allowance', '500', 'sss', '2021-02-08 07:24:55'),
+(4, 'PF Percentage', '12', NULL, NULL),
+(5, 'Yearly increment ', '3', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `md_ptax_slab`
 --
 
@@ -477,7 +502,7 @@ CREATE TABLE `md_users` (
   `user_name` varchar(100) NOT NULL,
   `user_status` char(1) NOT NULL,
   `branch_id` varchar(20) NOT NULL,
-  `st` tinyint(1) NOT NULL DEFAULT '0',
+  `st` tinyint(1) NOT NULL DEFAULT 0,
   `created_by` varchar(50) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `modified_by` varchar(50) DEFAULT NULL,
@@ -609,7 +634,7 @@ CREATE TABLE `td_attendance` (
   `emp_cd` int(11) NOT NULL,
   `emp_name` varchar(100) NOT NULL,
   `emp_catg` varchar(30) DEFAULT NULL,
-  `no_of_days` int(11) NOT NULL DEFAULT '0',
+  `no_of_days` int(11) NOT NULL DEFAULT 0,
   `created_by` varchar(50) NOT NULL,
   `created_dt` datetime NOT NULL,
   `modified_by` varchar(50) NOT NULL,
@@ -9580,7 +9605,11 @@ INSERT INTO `td_audit_trail` (`sl_no`, `login_dt`, `user_id`, `terminal_name`, `
 (13430, '2021-01-27 12:08:35', 'sss', '::1', '2021-01-27 12:10:46'),
 (13431, '2021-01-27 12:11:04', 'sss', '::1', '2021-01-27 12:16:24'),
 (13432, '2021-01-27 12:16:34', 'sss', '::1', '2021-01-27 12:18:12'),
-(13433, '2021-01-27 12:19:27', 'sss', '::1', '2021-01-27 12:19:34');
+(13433, '2021-01-27 12:19:27', 'sss', '::1', '2021-01-27 12:19:34'),
+(13434, '2021-02-08 04:52:01', 'sss', '::1', NULL),
+(13435, '2021-02-08 05:57:10', 'sss', '::1', NULL),
+(13436, '2021-02-08 06:16:47', 'sss', '::1', NULL),
+(13437, '2021-02-09 11:08:25', 'sss', '::1', NULL);
 
 -- --------------------------------------------------------
 
@@ -9595,12 +9624,12 @@ CREATE TABLE `td_deductions` (
   `sal_date` date NOT NULL,
   `emp_name` varchar(100) NOT NULL,
   `emp_catg` varchar(100) NOT NULL,
-  `gen_adv` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `gen_intt` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `festival_adv` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `lic` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `itax` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `other_deduction` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `gen_adv` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `gen_intt` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `festival_adv` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `lic` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `itax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `other_deduction` decimal(10,2) NOT NULL DEFAULT 0.00,
   `approval_status` varchar(5) NOT NULL DEFAULT 'U',
   `created_by` varchar(50) NOT NULL,
   `created_dt` datetime NOT NULL,
@@ -10089,6 +10118,26 @@ INSERT INTO `td_deductions` (`sal_yr`, `sal_month`, `emp_cd`, `sal_date`, `emp_n
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `td_income`
+--
+
+CREATE TABLE `td_income` (
+  `emp_code` int(10) NOT NULL,
+  `effective_date` date NOT NULL,
+  `basic_pay` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `da_amt` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `hra_amt` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `med_allow` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `othr_allow` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `created_by` varchar(50) DEFAULT NULL,
+  `created_dt` date DEFAULT NULL,
+  `modified_by` varchar(50) DEFAULT NULL,
+  `modified_dt` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `td_leave_dtls`
 --
 
@@ -10103,7 +10152,7 @@ CREATE TABLE `td_leave_dtls` (
   `leave_mode` varchar(1) NOT NULL,
   `from_dt` date NOT NULL,
   `to_dt` date NOT NULL,
-  `no_of_days` decimal(4,1) NOT NULL DEFAULT '0.0',
+  `no_of_days` decimal(4,1) NOT NULL DEFAULT 0.0,
   `remarks` tinytext NOT NULL,
   `approval_status` varchar(1) NOT NULL,
   `approved_dt` date NOT NULL,
@@ -10111,10 +10160,10 @@ CREATE TABLE `td_leave_dtls` (
   `rollback_reason` tinytext NOT NULL,
   `roll_dt` date DEFAULT NULL,
   `roll_by` varchar(50) DEFAULT NULL,
-  `cl_bal` decimal(4,1) NOT NULL DEFAULT '0.0',
-  `el_bal` decimal(4,1) NOT NULL DEFAULT '0.0',
-  `ml_bal` decimal(4,1) NOT NULL DEFAULT '0.0',
-  `od_bal` decimal(4,1) NOT NULL DEFAULT '0.0',
+  `cl_bal` decimal(4,1) NOT NULL DEFAULT 0.0,
+  `el_bal` decimal(4,1) NOT NULL DEFAULT 0.0,
+  `ml_bal` decimal(4,1) NOT NULL DEFAULT 0.0,
+  `od_bal` decimal(4,1) NOT NULL DEFAULT 0.0,
   `created_by` varchar(50) DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `modified_by` varchar(50) DEFAULT NULL,
@@ -11249,13 +11298,13 @@ DELIMITER ;
 
 CREATE TABLE `tm_pf_dtls` (
   `trans_dt` date NOT NULL,
-  `trans_no` int(11) NOT NULL DEFAULT '0',
+  `trans_no` int(11) NOT NULL DEFAULT 0,
   `sal_month` varchar(10) NOT NULL,
   `sal_year` int(11) NOT NULL,
   `emp_no` int(11) NOT NULL,
-  `employee_cntr` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `employer_cntr` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `balance` decimal(10,2) DEFAULT '0.00'
+  `employee_cntr` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `employer_cntr` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `balance` decimal(10,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -11756,6 +11805,12 @@ ALTER TABLE `md_month`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `md_parameters`
+--
+ALTER TABLE `md_parameters`
+  ADD PRIMARY KEY (`sl_no`);
+
+--
 -- Indexes for table `md_ptax_slab`
 --
 ALTER TABLE `md_ptax_slab`
@@ -11784,6 +11839,12 @@ ALTER TABLE `td_audit_trail`
 --
 ALTER TABLE `td_deductions`
   ADD PRIMARY KEY (`sal_yr`,`sal_month`,`emp_cd`);
+
+--
+-- Indexes for table `td_income`
+--
+ALTER TABLE `td_income`
+  ADD PRIMARY KEY (`emp_code`,`effective_date`);
 
 --
 -- Indexes for table `td_leave_dtls`
@@ -11830,26 +11891,38 @@ ALTER TABLE `tm_pf_dtls`
 --
 ALTER TABLE `md_branch`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Here id is Disctrict Code', AUTO_INCREMENT=349;
+
 --
 -- AUTO_INCREMENT for table `md_district`
 --
 ALTER TABLE `md_district`
   MODIFY `district_code` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
+
 --
 -- AUTO_INCREMENT for table `md_fin_year`
 --
 ALTER TABLE `md_fin_year`
   MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `md_month`
 --
 ALTER TABLE `md_month`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `md_parameters`
+--
+ALTER TABLE `md_parameters`
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `td_audit_trail`
 --
 ALTER TABLE `td_audit_trail`
-  MODIFY `sl_no` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13434;
+  MODIFY `sl_no` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13438;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
