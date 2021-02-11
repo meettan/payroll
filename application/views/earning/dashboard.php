@@ -14,7 +14,7 @@
 
         <h3>
             <a href="<?php echo site_url("slryad");?>" class="btn btn-primary" style="width: 100px;">Add</a>
-                <span class="confirm-div" style="float:right; color:green;"></span>
+            <span class="confirm-div" style="float:right; color:green;"></span>
         </h3>
 
         <table class="table table-bordered table-hover">
@@ -28,7 +28,6 @@
                     <!-- <th>Category</th> -->
                     <th>Effective Date</th>
                     <th>Basic Pay</th>
-                  
                     <th>Option</th>
 
                 </tr>
@@ -41,7 +40,7 @@
                 
                 if($earning_dtls) {
 
-                    
+                
                         foreach($earning_dtls as $e_dtls) {
 
                 ?>
@@ -50,36 +49,33 @@
 
                             <td><?php echo $e_dtls->emp_code; ?></td>
                             <td><?php echo $e_dtls->emp_name; ?></td>
-                            <!-- <td><?php echo $e_dtls->emp_catg; ?></td> -->
                             <td><?php echo date("d-m-Y", strtotime($e_dtls->effective_date)); ?></td>
+                            <!-- <td><?php echo $e_dtls->effective_date; ?></td> -->
                             <td><?php echo $e_dtls->basic_pay; ?></td>
 
                            
             <!--<td><//?php echo $d_dtls->other_deduction;?></td>-->
                             <td>
                             
-                                <!-- <a href="deduction/edit?emp_cd=<?php echo $d_dtls->emp_cd; ?>&month=<?php echo $d_dtls->sal_date; ?>" 
+                                <a href="earning/edit?emp_code=<?php echo $e_dtls->emp_code; ?>&effective_date=<?php echo $e_dtls->effective_date; ?>" 
                                     data-toggle="tooltip"
                                     data-placement="bottom" 
-                                    title="Edit"
-                                >
+                                    title="Edit">
 
-                                    <i class="fa fa-edit fa-2x" style="color: #007bff"></i>
+                             <i class="fa fa-edit fa-2x" style="color: #007bff"></i>
                                     
-                                </a> -->
+                                </a>
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <button 
                                     type="button"
                                     class="delete"
-                                    id="<?php echo $d_dtls->emp_cd; ?>"
-                                    date="<?php echo $d_dtls->sal_date; ?>"
+                                    id="<?php echo $e_dtls->emp_code; ?>"
+                                    date="<?php echo $e_dtls->effective_date; ?>"
                                     data-toggle="tooltip"
                                     data-placement="bottom" 
-                                    title="Delete"
-                                    
-                                >
+                                    title="Delete">
 
                                     <i class="fa fa-trash-o fa-2x" style="color: #bd2130"></i>
 
@@ -133,12 +129,14 @@
 
             var id = $(this).attr('id'),
                 date = $(this).attr('date');
+            // console.log( id);
+            // console.log( date);
 
             var result = confirm("Do you really want to delete this record?");
 
             if(result) {
 
-                window.location = "<?php echo site_url('payroll/deduction/delete?empcd="+id+"&saldate="+date+"');?>";
+                window.location = "<?php echo site_url('salary/earning_delete?emp_code="+id+"&effective_date="+date+"');?>";
 
             }
             
@@ -148,7 +146,7 @@
 
 </script>
 
-<script>
+<!-- <script>
    
    $(document).ready(function() {
 
@@ -162,4 +160,4 @@
 
    <?php } ?>
    
-</script>
+</script> -->

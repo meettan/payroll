@@ -13,11 +13,115 @@
 
 
 /******************************************************* */
+ //Edit earning Add for a particular employee 
+ public function earning_edit(){
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        
+ 
+        $emp_cd     =   $this->input->post('emp_code');
+
+        $category   =   $this->input->post('category');
+
+        $basic      =   $this->input->post('basic');
+
+        $da         =   $this->input->post('da');
+
+        $hra        =   $this->input->post('hra');
+
+        $ma         =   $this->input->post('ma');
+
+        $oa         =   $this->input->post('oa');
+
+        $data_array = array (
+
+               "effective_date"  =>  $sal_date,
+
+                "emp_code"       =>  $emp_cd,
+
+                "basic_pay"      =>  $basic,
+
+                "da_amt"         =>  $da,
+
+                "hra_amt"        =>  $hra,
+
+                "med_allow"      =>  $ma,
+
+                "othr_allow"     =>  $oa,
+
+                "modified_by"    =>  $this->session->userdata('loggedin')->user_name,
+
+                "modified_dt"    =>  date('Y-m-d h:i:s')
+
+        );
+
+        $where = array(
+
+            "emp_code"       =>  $emp_cd,
+
+            "effective_date"     =>  $sal_date
+
+        );
+        
+        $this->session->set_flashdata('msg', 'Successfully Updated!');
+
+        $this->Salary_Process->f_edit('td_income', $data_array, $where);
+
+        redirect('salary/earning');
+
+    }
+
+    else {
+
+        $where = array(
+
+            "effective_date"    =>  $this->input->get('effective_date'),
+
+            "emp_code"       =>  $this->input->get('emp_cd')
+
+        );
+
+
+        //Month List
+        // $deduction['month_list'] =   $this->Payroll->f_get_particulars("md_month", NULL, NULL, 0);
+        
+        //Deduction list of latest month
+        $earning['earning_dtls']  = $this->Salary_Process->f_get_particulars("td_income", NULL, $where, 1);
+
+        // $this->load->view('post_login/main');
+        $this->load->view('post_login/payroll_main');
+        $this->load->view("earning/edit", $earning);
+
+        $this->load->view('post_login/footer');
+
+    }
+}
+
+
+ //Deduction Delete for a particular employee
+ public function earning_delete(){
+
+    $where = array(
+        
+        "emp_code"    =>  $this->input->get('emp_code'),
+
+        "effective_date"  =>  $this->input->get('effective_date')
+        
+    );
+
+    $this->session->set_flashdata('msg', 'Successfully Deleted!');
+
+    $this->Salary_Process->f_delete('td_income', $where);
+// echo $this->db->last_query();
+// die();
+    redirect("salary/earning");
+    
+}
+
 public function earning() {
 
-    $earning['earning_dtls']    =   $this->Salary_Process->f_get_earning();
+    $earning['earning_dtls']=$this->Salary_Process->f_get_earning();
 
-   
     $this->load->view('post_login/payroll_main');
     $this->load->view("earning/dashboard", $earning);
 
@@ -25,80 +129,57 @@ public function earning() {
 
 }
 
+
 public function f_sal_dtls()
 {
-
     $emp_code = $this->input->get('emp_code');
-    // $emp_code =$this->input->post('emp_code');
-    // echo ($emp_code);
-    // die();
+    
     $data = $this->Salary_Process->f_sal_dtls($emp_code);
-    // echo $this->db->last_query();
-    // die();
+   
     echo json_encode($data);
 
 }
+
 public function earning_add() {
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         
-        // $sal_month  =   $this->input->post('month');
-
-        // $year       =   $this->input->post('year');
-
-        // $emp_dtls   =   json_decode($this->input->post('emp_code'));
-
-        // $emp_cd     =   $emp_dtls->empid;
-
-        // $emp_name   =   $emp_dtls->empname;
-        $emp_cd   =   $this->input->post('emp_code');
+        $emp_cd     =   $this->input->post('emp_code');
 
         $category   =   $this->input->post('category');
 
-        $basic    =   $this->input->post('basic');
+        $basic      =   $this->input->post('basic');
 
-        $da   =   $this->input->post('da');
+        $da         =   $this->input->post('da');
 
-        $hra   =   $this->input->post('hra');
+        $hra        =   $this->input->post('hra');
 
-        $ma        =   $this->input->post('ma');
+        $ma         =   $this->input->post('ma');
 
-        $oa       =   $this->input->post('oa');
+        $oa         =   $this->input->post('oa');
 
         //For Current Date
         $sal_date   =   $_SESSION['sys_date'];
-   
-       
+ 
+        $data_array  = array (
 
-        
-
-        $data_array = array (
-
-        // "sal_yr"       =>  $year,		
-
-        //         "sal_month"    =>  $sal_month,
-
-                "effective_date"     =>  $sal_date,
+                "effective_date" =>  $sal_date,
 
                 "emp_code"       =>  $emp_cd,
 
-                // "emp_name"     =>  $emp_name,
-
-                // "emp_catg"     =>  $category,
-
                 "basic_pay"      =>  $basic,
 
-                "da_amt"     =>  $da,
+                "da_amt"         =>  $da,
 
-                "hra_amt" =>  $hra,
+                "hra_amt"        =>  $hra,
 
-                "med_allow"          =>  $ma,
+                "med_allow"      =>  $ma,
 
-                "othr_allow"         =>  $oa,
+                "othr_allow"     =>  $oa,
 
-                "created_by"   =>  $this->session->userdata('loggedin')->user_name,
+                "created_by"     =>  $this->session->userdata('loggedin')->user_name,
 
-                "created_dt"   =>  date('Y-m-d h:i:s')
+                "created_dt"     =>  date('Y-m-d h:i:s')
 
             );
         
@@ -113,10 +194,6 @@ public function earning_add() {
 
     else {
         
-        //Month List
-        // $deduction['month_list'] =   $this->Payroll->f_get_particulars("md_month",NULL, NULL, 0);
-
-        
         //For Current Date
         $earning['sys_date']   =   $_SESSION['sys_date'];
 
@@ -124,24 +201,12 @@ public function earning_add() {
         unset($select);
         $select = array ("emp_code", "emp_name", "emp_catg");
 
-        // $where  = array (
-
-        // "emp_catg in (1,2,3)"  => null,
-        //  "emp_status"	   => 'A'
-
-        // );
-
     //Employee List
         $earning['emp_list']   =   $this->Salary_Process->f_get_particulars("md_employee", $select, NULL, 0);
 
      //   Category List
     $earning['category']   =   $this->Salary_Process->f_get_particulars("md_category", NULL, NULL, 0);
-//     echo $this->db->last_query();
-// die();
-    //Month List
-    // $deduction['month']	     =   $this->Payroll->f_get_particulars("md_month", NULL, NULL, 0);
 
-        // $this->load->view('post_login/payroll_main');
         $this->load->view('post_login/payroll_main');
         $this->load->view("earning/add", $earning);
 

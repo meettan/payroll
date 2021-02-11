@@ -3,15 +3,15 @@
         <div class="col-md-6 container form-wraper">
 
             <form method="POST" 
-                action="<?php echo site_url("payroll/deduction/edit");?>" >
+                action="<?php echo site_url("slryed");?>" >
 
                 <div class="form-header">
                 
-                    <h4>Edit Deduction</h4>
+                    <h4>Edit Earning</h4>
                 
                 </div>
 
-                <div class="form-group row">
+                <!-- <div class="form-group row">
 
                     <label for="sal_yr" class="col-sm-2 col-form-label">Date:</label>
 
@@ -27,7 +27,7 @@
 
                     </div>
 
-                </div>
+                </div> -->
 
                 <div class="form-group row">
 
@@ -38,7 +38,7 @@
                         <input type="hidden"
                                 name="emp_cd"
                                 id="emp_cd"
-                                value="<?php echo $deduction_dtls->emp_cd;?>"
+                                value="<?php echo $earning_dtls->emp_cd;?>"
                                 readonly
                         >
 
@@ -46,7 +46,7 @@
                                 name="empname"
                                 class="form-control required"
                                 id="empname"
-                                value="<?php echo $deduction_dtls->emp_name;?>"
+                                value="<?php echo $earning_dtls->emp_name;?>"
                                 readonly
                         >
 
@@ -64,7 +64,7 @@
                             class= "form-control"
                             name = "category"
                             id   = "category"
-                            value="<?php echo $deduction_dtls->emp_catg;?>"
+                            value="<?php echo $earning_dtls->emp_catg;?>"
                             readonly
                         />
 
@@ -73,9 +73,9 @@
                 </div>
  
 
-                <div class="form-group row">
+                <!-- <div class="form-group row"> -->
 
-                    <label for="sal_month" class="col-sm-2 col-form-label">Month:</label>
+                    <!-- <label for="sal_month" class="col-sm-2 col-form-label">Month:</label>
 
                         <div class="col-sm-4">
 
@@ -103,10 +103,10 @@
 
                             </select>   
 
-                        </div>
+                        </div> -->
                 
 
-                    <label for="sal_yr" class="col-sm-2 col-form-label">Year:</label>
+                    <!-- <label for="sal_yr" class="col-sm-2 col-form-label">Year:</label>
 
                     <div class="col-sm-4">
 
@@ -118,66 +118,66 @@
                             readonly required	
                         />
 
+                    </div> -->
+
+                <!-- </div> -->
+
+                <div class="form-group row">
+
+                    <label for="basic" class="col-sm-2 col-form-label">basic Pay:</label>
+
+                    <div class="col-sm-4">
+
+                        <input type = "text"
+                            class="form-control required"
+                            name = "basic"
+                            id   = "basic"
+                            value="<?php echo $earning_dtls->basic_pay;?>"
+                        />
+
+                    </div>
+
+
+                    <label for="da" class="col-sm-2 col-form-label">DA:</label>
+
+                    <div class="col-sm-4">
+
+                        <input type = "text"
+                            class="form-control required"
+                            name = "da"
+                            id   = "da"
+                            value="<?php echo $earning_dtls->da_amt;?>"
+                        />
+
                     </div>
 
                 </div>
 
                 <div class="form-group row">
 
-                    <label for="gen_adv" class="col-sm-2 col-form-label">General Advance:</label>
+                    <label for="hrm" class="col-sm-2 col-form-label">HRA:</label>
 
                     <div class="col-sm-4">
 
                         <input type = "text"
                             class="form-control required"
-                            name = "gen_adv"
-                            id   = "gen_adv"
-                            value="<?php echo $deduction_dtls->gen_adv;?>"
-                        />
-
-                    </div>
-
-
-                    <label for="adv" class="col-sm-2 col-form-label">General Interest:</label>
-
-                    <div class="col-sm-4">
-
-                        <input type = "text"
-                            class="form-control required"
-                            name = "gen_intt"
-                            id   = "gen_intt"
-                            value="<?php echo $deduction_dtls->gen_intt;?>"
-                        />
-
-                    </div>
-
-                </div>
-
-                <div class="form-group row">
-
-                    <label for="fest_adv" class="col-sm-2 col-form-label">Festival Advance:</label>
-
-                    <div class="col-sm-4">
-
-                        <input type = "text"
-                            class="form-control required"
-                            name = "fest_adv"
-                            id   = "fest_adv"
-                            value="<?php echo $deduction_dtls->festival_adv;?>"
+                            name = "hra"
+                            id   = "hra"
+                            value="<?php echo $earning_dtls->hra_amt;?>"
                         />
 
                     </div>
 
                 
-                    <label for="lic" class="col-sm-2 col-form-label">LIC:</label>
+                    <label for="ma" class="col-sm-2 col-form-label">MA:</label>
 
                     <div class="col-sm-4">
 
                         <input type = "text"
                             class="form-control required"
-                            name = "lic"
-                            id   = "lic"
-                            value="<?php echo $deduction_dtls->lic;?>"
+                            name = "ma"
+                            id   = "ma"
+                            value="<?php echo $earning_dtls->med_allow;?>"
                         />
 
                     </div>
@@ -187,15 +187,15 @@
 
                 <div class="form-group row">
 
-                    <label for="itax" class="col-sm-2 col-form-label">I-tax:</label>
+                    <label for="oa" class="col-sm-2 col-form-label">Other Allownce:</label>
 
                     <div class="col-sm-4">
 
                         <input type = "text"
                             class="form-control required"
-                            name = "itax"
-                            id   = "itax"
-                            value="<?php echo $deduction_dtls->itax;?>"
+                            name = "oa"
+                            id   = "oa"
+                            value="<?php echo $earning_dtls->othr_allow;?>"
                         />
 
                     </div>

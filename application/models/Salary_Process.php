@@ -60,7 +60,7 @@
 
 		}
 
-
+/*****************Retive calculation of DA,HRA etc********************** */
 		public function f_sal_dtls($emp_code) // For Jquery
         {
 
@@ -76,44 +76,14 @@
 /*****************Retive Earning List********************** */
 public function f_get_earning() {
 
-    $sql = "SELECT a.emp_code, b.emp_name,MAX(a.effective_date) effective_date 
+	$data = $this->db->query( "SELECT a.emp_code as emp_code, b.emp_name as emp_name,MAX(a.effective_date) as effective_date ,a.basic_pay
             FROM td_income a ,md_employee b
             WHERE a.emp_code = b.emp_code
-            GROUP BY a.emp_code, b.emp_name";
+            GROUP BY a.emp_code, b.emp_name,a.basic_pay");
                                           
-    $result		=	$this->db->query($sql);	
-    
-    // if($result->num_rows() > 0){
-
-    //     foreach($result->result() as $row) {
-
-    //         $where = array(
-
-    //             "emp_code"			=>	$row->emp_cd,
-
-    //             "effective_date"			=>	$row->sal_date
-
-    //         );
-
-    //         $data[] = $this->f_get_particulars("td_income", NULL, $where, 1);
-
-    //     }
-
-    //     return $data;
-
-    // }
-    
-    // else{
-
-    //     return false;
-        
-    // }
+    return $data->result();
 
 }
-
-
-
-
 
 
 		//Retive Deduction List
