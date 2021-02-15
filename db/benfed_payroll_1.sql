@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 15, 2021 at 08:56 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.2.24
+-- Host: localhost:3306
+-- Generation Time: Feb 10, 2021 at 12:35 PM
+-- Server version: 10.3.25-MariaDB-0ubuntu0.20.04.1
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -263,25 +263,25 @@ CREATE TABLE `md_district` (
 --
 
 INSERT INTO `md_district` (`district_code`, `district_name`, `dist_sort_code`) VALUES
-(327, 'DARJEELING', 'DAR'),
-(328, 'JALPAIGURI', 'JPG'),
-(329, 'COOCH BEHAR', 'COOH'),
-(330, 'UTTAR DINAJPUR', 'NDNJ'),
-(331, 'DAKSHIN DINAJPUR', 'SDNJ'),
-(332, 'MALDAH', 'MLD'),
-(333, 'MURSHIDABAD', 'MUR'),
-(334, 'BIRBHUM', 'BRH'),
-(335, 'PURBA BARDHAMAN', 'EBDN'),
-(336, 'NADIA', 'NDA'),
-(337, 'NORTH TWENTY FOUR PARGANAS', 'N24'),
-(338, 'HOOGHLY', 'HOG'),
-(339, 'BANKURA', 'BNK'),
-(340, 'PURULIA', 'PUR'),
+(327, 'DARJEELINg', 'DAR'),
+(328, 'JALPAIGURi', 'JPG'),
+(329, 'COOCH BEHAr', 'COOH'),
+(330, 'UTTAR DINAJPUr', 'NDNJ'),
+(331, 'DAKSHIN DINAJPUr', 'SDNJ'),
+(332, 'MALDAh', 'MLD'),
+(333, 'MURSHIDABAd', 'MUR'),
+(334, 'BIRBHUm', 'BRH'),
+(335, 'PURBA BARDHAMAn', 'EBDN'),
+(336, 'NADIa', 'NDA'),
+(337, 'NORTH TWENTY FOUR PARGANAs', 'N24'),
+(338, 'HOOGHLy', 'HOG'),
+(339, 'BANKURa', 'BNK'),
+(340, 'PURULIa', 'PUR'),
 (341, 'HOWRAH', 'HWH'),
 (342, 'KOLKATA', 'KOL'),
-(343, 'SOUTH TWENTY FOUR PARGANAS', 'S24'),
-(344, 'PASCHIM MIDNAPORE', 'WMDN'),
-(345, 'PURBA MIDNAPORE', 'EMDN'),
+(343, 'SOUTH TWENTY FOUR PARGANAs', 'S24'),
+(344, 'PASCHIM MIDNAPORe', 'WMDN'),
+(345, 'PURBA MIDNAPORe', 'EMDN'),
 (346, 'ALIPURDUAR', 'ALPD'),
 (347, 'PASCHIM BARDHAMAN', 'WBDN'),
 (348, 'JHARGRAM', 'JHG');
@@ -323,7 +323,7 @@ CREATE TABLE `md_employee` (
 --
 
 INSERT INTO `md_employee` (`emp_code`, `emp_name`, `emp_catg`, `emp_dist`, `dob`, `join_dt`, `ret_dt`, `designation`, `department`, `phn_no`, `email`, `pan_no`, `aadhar_no`, `emp_addr`, `bank_name`, `bank_ac_no`, `pf_ac_no`, `basic_pay`, `created_by`, `created_dt`, `emp_status`, `modified_by`, `modified_dt`) VALUES
-(1, 'Sheikh Samsul Islam', 3, 332, '2033-01-10', '0000-00-00', '0000-00-00', 'A.M.II', ' ', 0, '', '', '34345676', 'ss', '', '', '6180', '20390.00', 'sss', '2018-08-28 00:00:00', 'A', NULL, '2021-02-10 09:43:00'),
+(1, 'Sheikh Samsul Islam', 3, 0, NULL, '0000-00-00', '0000-00-00', 'A.M.II', ' ', 0, '', NULL, NULL, NULL, '', '', '6180', '20390.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-02-25 06:53:07'),
 (2, 'Susanta Kr. Chakrabarty', 3, 0, NULL, '0000-00-00', '0000-00-00', 'S.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '5859', '20140.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-10-12 07:37:23'),
 (3, 'Gulshan Gund', 1, 0, NULL, '0000-00-00', '0000-00-00', 'S.A.', '', 0, '', NULL, NULL, NULL, '', '', '5859', '20140.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-07-27 05:53:14'),
 (4, 'Anutosh Roy', 3, 0, NULL, '0000-00-00', '0000-00-00', 'S.A.', '', 0, '', NULL, NULL, NULL, '', '', '5397', '17610.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-02-25 06:53:19'),
@@ -333,7 +333,7 @@ INSERT INTO `md_employee` (`emp_code`, `emp_name`, `emp_catg`, `emp_dist`, `dob`
 (8, 'Mohan Ram', 1, 0, NULL, '0000-00-00', '0000-00-00', 'Driver', '', 0, '', NULL, NULL, NULL, '', '', '2435', '7980.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 09:10:30'),
 (9, 'Purnima Samanta', 1, 0, NULL, '0000-00-00', '0000-00-00', 'F.W.', ' ', 0, '', NULL, NULL, NULL, '', '', '4288', '13580.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2019-01-24 07:53:16'),
 (10, 'Jabbar Mullick', 1, 0, NULL, '0000-00-00', '0000-00-00', 'F.W.', '', 0, '', NULL, NULL, NULL, '', '', '3710', '11860.00', 'sss', '2018-08-28 00:00:00', 'I', 'CONFED', '2019-01-24 07:56:26'),
-(11, 'Taraknath Kar', 1, 342, '1980-02-25', '1990-09-01', '2025-05-14', 'SR', 'Cooperation', 2147483647, 'taraknathkr1@gmail.com', 'ATGBHJKOP259A', '012489552', 'dcdcdcdcdcvdsvdvdevde', 'Axis Bank', '012454', '124785963', '11120.00', 'sss', '2018-08-28 00:00:00', 'A', NULL, '2021-02-10 09:44:29'),
+(11, 'Taraknath Kar', 1, 0, '1980-02-25', '1990-09-01', '2025-05-14', 'SR', 'Cooperation', 2147483647, 'taraknathkr1@gmail.com', 'ATGBHJKOP259A', '012489552', 'dcdcdcdcdcvdsvdvdevde', 'Axis Bank', '012454', '124785963', '11120.00', 'sss', '2018-08-28 00:00:00', 'A', NULL, '2021-02-09 01:10:27'),
 (12, 'Tumpa Majumdar', 1, 0, NULL, '0000-00-00', '0000-00-00', 'J.A.', ' ', 0, '', NULL, NULL, NULL, '', '', '2395', '7780.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:20:08'),
 (13, 'Nemai Ghosh', 1, 0, NULL, '2018-09-01', '0000-00-00', 'J.A.', '', 0, '', NULL, NULL, NULL, '', '', '1809', '6510.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:32'),
 (14, 'Subrata Ghosh', 1, 0, NULL, '2018-04-10', '0000-00-00', 'J.A.', '  ', 0, '', NULL, NULL, NULL, '', '', '1809', '6510.00', 'sss', '2018-08-28 00:00:00', 'A', 'Arka Prosad Sen', '2020-08-17 08:16:15'),
@@ -9609,10 +9609,7 @@ INSERT INTO `td_audit_trail` (`sl_no`, `login_dt`, `user_id`, `terminal_name`, `
 (13434, '2021-02-08 04:52:01', 'sss', '::1', NULL),
 (13435, '2021-02-08 05:57:10', 'sss', '::1', NULL),
 (13436, '2021-02-08 06:16:47', 'sss', '::1', NULL),
-(13437, '2021-02-09 11:08:25', 'sss', '::1', NULL),
-(13438, '2021-02-10 08:34:08', 'sss', '::1', NULL),
-(13439, '2021-02-11 06:25:48', 'sss', '::1', NULL),
-(13440, '2021-02-11 06:49:50', 'sss', '::1', NULL);
+(13437, '2021-02-09 11:08:25', 'sss', '::1', NULL);
 
 -- --------------------------------------------------------
 
@@ -10137,13 +10134,6 @@ CREATE TABLE `td_income` (
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_dt` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `td_income`
---
-
-INSERT INTO `td_income` (`emp_code`, `effective_date`, `basic_pay`, `da_amt`, `hra_amt`, `med_allow`, `othr_allow`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(11, '2021-02-11', '11120.00', '333.60', '1334.40', '500.00', '600.00', NULL, '2021-02-11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11930,7 +11920,7 @@ ALTER TABLE `md_parameters`
 -- AUTO_INCREMENT for table `td_audit_trail`
 --
 ALTER TABLE `td_audit_trail`
-  MODIFY `sl_no` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13441;
+  MODIFY `sl_no` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13438;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
