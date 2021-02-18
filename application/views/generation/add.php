@@ -3,7 +3,7 @@
     <div class="col-md-6 container form-wraper">
 
         <form method="POST" 
-            action="<?php echo site_url("payroll/generation/add");?>"
+            action="<?php echo site_url("addgen");?>"
             >      
 
             <div class="form-header">
@@ -62,7 +62,7 @@
 
                         <?php foreach($month_list as $m_list) {?>
 
-                            <option value="<?php echo $m_list->month_name ?>" ><?php echo $m_list->month_name; ?></option>
+                            <option value="<?php echo $m_list->id; ?>" ><?php echo $m_list->month_name; ?></option>
 
                         <?php
                         }
@@ -111,70 +111,6 @@
                 </div>
 
             </div>
-
-            <div class="form-group row">
-
-                <label for="trans_type" class="col-sm-2 col-form-label">Bank:</label>
-
-                <div class="col-sm-10">
-
-                    <select class="form-control required" name="bank" id="bank" required>
-
-                        <option value="">Select Bank</option>
-
-                                        <?php foreach($bank as $b_list) {?>
-
-                            <option value="<?php echo $b_list->acc_code;?>" >
-                                    <?php echo $b_list->bank_name."(".$b_list->ac_no.")"; ?>
-                            </option>
-                        <?php
-                                            }
-                                        ?>
-
-                    </select>
-
-                </div>
-                
-            </div>
-
-            <div class="form-group row">
-                
-                <label for="trans_type" class="col-sm-2 col-form-label">Transaction Type:</label>
-                
-                <div class="col-sm-10">
-                        
-                    <select class="form-control required" name="trans_type" id="trans_type" required>
-
-                        <option value="">Select Transaction</option>
-                        <option value="C">Cheque</option>
-                        <option value="N">NEFT</option>
-
-                    </select>
-                    
-                </div>	
-                
-            </div>
-
-            <div class="form-group row">
-
-                <label for="chq_no" class="col-sm-2 col-form-label">Cheque No.:</label>
-
-                <div class="col-sm-4">
-
-                    <input type="text" class="form-control" name="chq_no" id="chq_no"/>
-
-                </div>
-
-
-                <label for="chq_dt" class="col-sm-2 col-form-label">Cheque Date:</label> 
-
-                <div class="col-sm-4">
-
-                    <input type="date" class="form-control" name="chq_dt" id="chq_dt"/>
-
-                </div>
-
-            </div>   
 
             <div class="form-group row">
 

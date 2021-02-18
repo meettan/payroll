@@ -19,7 +19,7 @@
 
             </h3>
 
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover" id="myTable">
 
                 <thead>
 
@@ -138,7 +138,6 @@
     </div>
 
 <script>
-
     $(document).ready( function (){
 
         $('.delete').click(function () {
@@ -163,14 +162,20 @@
    
     $(document).ready(function() {
 
-    $('.confirm-div').hide();
+        $('.confirm-div').hide();
 
-    <?php if($this->session->flashdata('msg')){ ?>
+        <?php if($this->session->flashdata('msg')){ ?>
 
-    $('.confirm-div').html('<?php echo $this->session->flashdata('msg'); ?>').show();
+        $('.confirm-div').html('<?php echo $this->session->flashdata('msg'); ?>').show();
+
+        <?php } ?>
 
     });
-
-    <?php } ?>
     
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
 </script>

@@ -140,7 +140,7 @@
 	
 					"basic_pay"        =>  $this->input->post('basic_pay'),
 	
-					"created_by"       =>  $this->session->userdata('loggedin')->user_name,
+					"created_by"       =>  $this->session->userdata['loggedin']['user_id'],
 	
 					"created_dt"       =>  date('Y-m-d h:i:s')
 	
@@ -226,7 +226,7 @@
 	
 					"basic_pay"        =>  $this->input->post('basic_pay'),
 	
-					"modified_by"       =>  $this->session->userdata('loggedin')->user_name,
+					"modified_by"       => $this->session->userdata['loggedin']['user_id'],
 	
 					"modified_dt"       =>  date('Y-m-d h:i:s')
 	

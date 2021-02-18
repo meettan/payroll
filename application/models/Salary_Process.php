@@ -60,37 +60,39 @@
 
 		}
 
-/*****************Retive calculation of DA,HRA etc********************** */
-		public function f_sal_dtls($emp_code) // For Jquery
+		public function f_sal_dtls($emp_code) 										//Calculate Earnings
         {
 
-            $sql = $this->db->query("SELECT a.basic_pay,basic_pay * (select param_value from md_parameters where sl_no=1)/100 as da,
-			basic_pay * (select param_value from md_parameters where sl_no=2)/100 as hra,
-			(select param_value from md_parameters where sl_no=3)ma
-			FROM md_employee a 
-			WHERE a.emp_code ='$emp_code'");
+            $sql = $this->db->query("SELECT a.basic_pay,
+										    basic_pay * (select param_value from md_parameters where sl_no=1)/100 as da,
+									        basic_pay * (select param_value from md_parameters where sl_no=2)/100 as hra,
+											(select param_value from md_parameters where sl_no=4)epf, 
+										    (select param_value from md_parameters where sl_no=3) ma
+									FROM md_employee a 
+								    WHERE a.emp_code ='$emp_code'");
             return $sql->row();
 
 		}
 
-/*****************Retive Earning List********************** */
-public function f_get_earning() {
-
-	$data = $this->db->query( "SELECT a.emp_code as emp_code, b.emp_name as emp_name,MAX(a.effective_date) as effective_date ,a.basic_pay
-            FROM td_income a ,md_employee b
-            WHERE a.emp_code = b.emp_code
-            GROUP BY a.emp_code, b.emp_name,a.basic_pay");
-                                          
-    return $data->result();
-
-}
+		public function f_get_earning() {											//Retrieve Earnings for Dashboard
+			$data = $this->db->query( "SELECT a.emp_code as emp_code, 
+											  b.emp_name as emp_name,
+											  b.emp_dist as emp_dist,
+											  c.district_name as district_name,
+											  MAX(a.effective_date) as effective_date
+									    FROM td_income a ,md_employee b,md_district c
+										WHERE a.emp_code = b.emp_code
+										and   b.emp_dist = c.district_code
+									    GROUP BY a.emp_code, b.emp_name,c.district_name");
+												
+			return $data->result();
+		}
 
 
 		//Retive Deduction List
-		public function f_get_deduction() {
+		/*public function f_get_deduction() {
 
-			$sql = "SELECT emp_cd, MAX(sal_date) sal_date FROM td_deductions
-														  WHERE approval_status = 'U'
+			$sql = "SELECT emp_cd, MAX(cast(created_dt As DATE)) sal_date FROM td_deductions
 														  GROUP BY emp_cd";
 												  
 			$result		=	$this->db->query($sql);	
@@ -103,7 +105,7 @@ public function f_get_earning() {
 	
 						"emp_cd"			=>	$row->emp_cd,
 	
-						"sal_date"			=>	$row->sal_date
+						"created_dt"		=>	$row->sal_date
 	
 					);
 	
@@ -121,11 +123,11 @@ public function f_get_earning() {
 				
 			}
 
-		}
+		}*/
 
 
 		//Retive Attendance List
-		public function f_get_attendance() {
+		/*public function f_get_attendance() {
 
 			$sql = "SELECT emp_cd, MAX(trans_dt) trans_dt FROM td_attendance
 				GROUP BY emp_cd";
@@ -156,11 +158,11 @@ public function f_get_earning() {
 				return false;
 			}
 
-		}
+		}*/
 
 
 		//Retive Bonus List
-		public function f_get_bonus() {
+		/*public function f_get_bonus() {
 
 			$sql = "SELECT emp_no, MAX(trans_dt) trans_dt FROM td_bonus
 														  GROUP BY emp_no";
@@ -193,11 +195,11 @@ public function f_get_earning() {
 
 			}
 
-		}
+		}*/
 
 
 		//Retive Incentive List
-		public function f_get_incentive() {
+		/*public function f_get_incentive() {
 
 			$sql = "SELECT emp_no, MAX(trans_dt) trans_dt FROM td_incentive
 														  GROUP BY emp_no";
@@ -230,10 +232,10 @@ public function f_get_earning() {
 				
 			}
 
-		}
+		}*/
 
 		//For Periodic Increment
-		public function f_get_increment() {
+		/*public function f_get_increment() {
 
 			$sql = "SELECT emp_cd, MAX(effective_dt) trans_dt FROM md_basic_pay
 														      GROUP BY emp_cd";
@@ -266,13 +268,16 @@ public function f_get_earning() {
 				
 			}
 
-		}
+		}*/
 
 		//For Salary slip generation
 		public function f_get_generation() {
 
-			$sql = "SELECT sal_month, sal_year, MAX(trans_date) trans_date
-												FROM td_salary GROUP BY sal_month, sal_year LIMIT 1";
+			$sql = "SELECT sal_month, sal_year, 
+						   MAX(trans_date) trans_date
+					FROM   td_salary 
+					GROUP BY sal_month, 
+							 sal_year LIMIT 1";
 
 			$result	=	$this->db->query($sql);
 

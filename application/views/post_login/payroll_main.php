@@ -18,6 +18,8 @@
      <script type="text/javascript" src="<?php echo base_url("/assets/js/table2excel.js")?>"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url("/assets/js/bootstrap-toggle.js")?>" ></script> 
+    <link href="<?php echo base_url("/assets/css/jquery.dataTables.css");?>" rel="stylesheet">
+    <script type="text/javascript" src="<?php echo base_url("/assets/js/jquery.dataTables.js")?>"></script>
     <style>
         .hr {
             display: block;
@@ -147,16 +149,13 @@
 
                         <?php if( $this->session->userdata['loggedin']['ho_flag']=="Y"){?> 
                             <div class="dropdown-content">
-                            <div class="sub-dropdown">
-                            <!-- <a href="<?php echo site_url("adv/company_advance");?>">Earning Master</a> -->
-                            <a href="<?php echo site_url("slrydtl");?>">Earning Master</a>
-                            <!-- <a href="<?php echo site_url("drcrnote/cr_note");?>">Credit Note</a>
-                            <a href="<?php echo site_url("compay/company_payment");?>">Company Payment</a> -->
-                             
+                                <div class="sub-dropdown">
+                                    <a href="<?php echo site_url("slrydtl");?>">Earnings</a>
+                                    <a href="<?php echo site_url("slryded");?>">Deductions</a>
+                                    <a href="<?php echo site_url("genspl");?>">Generate Payslip</a>
+                                </div>
                             </div>
-                          
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
                     
                     </div> 
 

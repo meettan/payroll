@@ -4,7 +4,7 @@
         
         <div class="col-lg-9 col-sm-12">
 
-            <h1><strong>Employees Deduction</strong></h1>
+            <h1><strong>Unapproved Generation List</strong></h1>
 
         </div>
 
@@ -13,7 +13,7 @@
     <div class="col-lg-12 container contant-wraper">    
 
         <h3>
-            <a href="<?php echo site_url("payroll/deduction/add");?>" class="btn btn-primary" style="width: 100px;">Add</a>
+                <a href="<?php echo site_url("addgen");?>" class="btn btn-primary" style="width: 100px;">Add</a>
                 <span class="confirm-div" style="float:right; color:green;"></span>
         </h3>
 
@@ -23,17 +23,13 @@
 
                 <tr>
                 
-                    <th>Sl No.</th>
-                    <th>Name</th>
-                    <th>Category</th>
                     <th>Date</th>
-                    <th>General<br>Advance</th>
-                    <th>General<br>Interest</th>
-                    <th>Festival<br>Advance</th>
-                    <th>LIC</th>
-                    <th>I-tax</th>
-            <!--	<th>Others</th>  -->
-                    <th>Option</th>
+                    <th>Category</th>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Created By</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                 </tr>
 
@@ -43,29 +39,26 @@
 
                 <?php 
                 
-                if($deduction_dtls) {
+                if($generation_dtls) {
 
-                    
-                        foreach($deduction_dtls as $d_dtls) {
+                    foreach($generation_dtls as $d_dtls) {
+
+                        foreach($category as $c_list) {
+
+                            if($d_dtls->catg_cd == $c_list->category_code) {
+
 
                 ?>
 
                         <tr>
-
-                            <td><?php echo $d_dtls->emp_cd; ?></td>
-                            <td><?php echo $d_dtls->emp_name; ?></td>
-                            <td><?php echo $d_dtls->emp_catg; ?></td>
-                            <td><?php echo date("d-m-Y", strtotime($d_dtls->sal_date)); ?></td>
-                            <td><?php echo $d_dtls->gen_adv; ?></td>
-
-                            <td><?php echo $d_dtls->gen_intt; ?></td>
-                            <td><?php echo $d_dtls->festival_adv; ?></td>
-                            <td><?php echo $d_dtls->lic; ?></td>
-            <td><?php echo $d_dtls->itax; ?></td>
-            <!--<td><//?php echo $d_dtls->other_deduction;?></td>-->
+                            <td><?php echo date('d-m-Y', strtotime($d_dtls->trans_date)); ?></td>
+                            <td><?php echo $c_list->category_type; ?></td>
+                            <td><?php echo $d_dtls->sal_year; ?></td>
+                            <td><?php echo date("F", mktime(0, 0, 0, $d_dtls->sal_month, 10)); ?></td>
+                            <td><?php echo $d_dtls->created_by; ?></td>
                             <td>
                             
-                                <a href="deduction/edit?emp_cd=<?php echo $d_dtls->emp_cd; ?>&month=<?php echo $d_dtls->sal_date; ?>" 
+                                <a href="generation/edit?trans_no=<?php echo $d_dtls->trans_no; ?>&month=<?php echo $d_dtls->sal_month; ?>&year=<?php echo $d_dtls->sal_year; ?>" 
                                     data-toggle="tooltip"
                                     data-placement="bottom" 
                                     title="Edit"
@@ -75,13 +68,16 @@
                                     
                                 </a>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </td>
 
+                            <td>
                                 <button 
                                     type="button"
                                     class="delete"
-                                    id="<?php echo $d_dtls->emp_cd; ?>"
-                                    date="<?php echo $d_dtls->sal_date; ?>"
+                                    date="<?php echo $d_dtls->trans_date; ?>"
+                                    id="<?php echo $d_dtls->trans_no; ?>"
+                                    month="<?php echo $d_dtls->sal_month; ?>"
+                                    year="<?php echo $d_dtls->sal_year; ?>"
                                     data-toggle="tooltip"
                                     data-placement="bottom" 
                                     title="Delete"
@@ -97,8 +93,11 @@
                         </tr>
 
                 <?php
+                            }
                         
                         }
+
+                    } 
 
                     }
 
@@ -115,17 +114,13 @@
 
                 <tr>
                 
-                    <th>Sl No.</th>
-                    <th>Name</th>
-                    <th>Category</th>
                     <th>Date</th>
-                    <th>General<br>Advance</th>
-                    <th>General<br>Interest</th>
-                    <th>Festival<br>Advance</th>
-                    <th>LIC</th>
-        <th>I-tax</th>
-        <th>Others</th>
-                    <!--<th>Option</th>-->
+                    <th>Category</th>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Created By</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                 </tr>
             
@@ -143,14 +138,16 @@
 
         $('.delete').click(function () {
 
-            var id = $(this).attr('id'),
-                date = $(this).attr('date');
+            var date  = $(this).attr('date'),
+                id    = $(this).attr('id'),
+                month = $(this).attr('month'),
+                year  = $(this).attr('year');
 
             var result = confirm("Do you really want to delete this record?");
 
             if(result) {
 
-                window.location = "<?php echo site_url('payroll/deduction/delete?empcd="+id+"&saldate="+date+"');?>";
+                window.location = "<?php echo site_url('payroll/generation/delete?date="+date+"&trans_no="+id+"&month="+month+"&year="+year+"');?>";
 
             }
             

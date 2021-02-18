@@ -62,13 +62,25 @@ $route['payroll/(:any)'] = 'payrolls/f_$1';
 $route['payroll/(:any)'] = 'payrolls/f_$1';*/
 $route['vlsedt'] = 'admin/parameter_edit'; 
 $route['vls'] = 'admin/parameter'; 
+
 $route['stfemp'] = 'admin/employee';
 $route['emadst'] = 'admin/employee_add';
 $route['dstf'] = 'admin/employee_delete';
 $route['estem'] = 'admin/employee_edit';
+
 $route['slrydtl'] = 'salary/earning';
 $route['slryad'] = 'salary/earning_add';
 $route['slryed'] = 'salary/earning_edit'; 
+
+$route['slryded'] = 'salary/deduction';
+$route['slrydedad'] = 'salary/deduction_add';
+$route['slrydeded'] = 'salary/deduction_edit';
+$route['deddl'] = 'salary/deduction_delete';
+
+$route['genspl'] = 'salary/generate_slip';
+$route['addgen'] = 'salary/generation_add';
+/*$route['slrydeded'] = 'salary/deduction_edit';
+$route['deddl'] = 'salary/deduction_delete';*/
 
 
  

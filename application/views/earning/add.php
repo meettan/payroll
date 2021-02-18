@@ -4,7 +4,7 @@
 
             <div class="form-header">
                 
-                <h4>Add Earning</h4>
+                <h4>Add Earnings</h4>
              
             </div>
 
@@ -14,7 +14,7 @@
                 action="<?php echo site_url("slryad");?>" >
                 <div class="form-group row">
 
-                    <label for="sal_date" class="col-sm-2 col-form-label">Effective Date:</label>
+                    <label for="sal_date" class="col-sm-2 col-form-label">Date:</label>
 
                     <div class="col-sm-10">
 
@@ -96,37 +96,20 @@
 
                 <div class="form-group row">
 
-                    <!-- <label for="month" class="col-sm-2 col-form-label">Month:</label>
+                    <label for="dist" class="col-sm-2 col-form-label">District:</label>
 
-                        <div class="col-sm-4">
+                    <div class="col-sm-10">
 
-                            <select class="form-control required" name="month" id="month" required>
+                        <input type = "text"
+                            class= "form-control"
+                            name = "dist"
+                            id   = "dist"
+                            readonly required
+                        />
 
-                                <option value="">Select Month</option>
-
-                                <?php foreach($month_list as $m_list) {?>
-
-                                    <option value="<?php echo $m_list->month_name ?>" ><?php echo $m_list->month_name; ?></option>
-
-                                <?php
-                                }
-                                ?>
-
-                            </select>
-
-                        </div>    -->
-
-                    <!-- <label for="year" class="col-sm-2 col-form-label">Year:</label>
-
-                    	<div class="col-sm-4">
-
-			                <input type="text" class="form-control" name="year" id="year" 
-				                    value="<?php echo date('Y');?>" readonly/>
-			
-			            </div> -->
+                    </div>
 
                 </div>
-
 
                 <div class="form-group row">
 
@@ -174,7 +157,7 @@
                     </div>
         
                 
-                    <label for="ma" class="col-sm-2 col-form-label">Medical Allowence:</label>
+                    <label for="ma" class="col-sm-2 col-form-label">Medical Allowance:</label>
 
                     <div class="col-sm-4">
 
@@ -192,7 +175,7 @@
 
                 <div class="form-group row">
 
-                    <label for="oa" class="col-sm-2 col-form-label">Other Alowence</label>
+                    <label for="oa" class="col-sm-2 col-form-label">Other Allowance</label>
 
                     <div class="col-sm-4">
 
@@ -249,6 +232,21 @@
 
             $('#category').val($(this).find(':selected').attr('catg'));
 
+            $.get(
+                '<?php echo site_url("Salary/f_emp_dtls"); ?>',
+                {
+                    emp_code: $(this).val() 
+                }
+            )
+
+            .done(function(data){
+                var parseData = JSON.parse(data);
+				// basic=$('#basic').val() 
+                console.log(parseData );
+                $('#dist').val(parseData.district_name) 
+
+            });
+
         });
 
     });
@@ -276,8 +274,6 @@
 	
 			)
 			.done(function(data){
-	
-		
 				var parseData = JSON.parse(data);
 				// basic=$('#basic').val() 
                 console.log(parseData );

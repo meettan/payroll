@@ -4,7 +4,7 @@
         
         <div class="col-lg-9 col-sm-12">
 
-            <h1><strong>Payslip Generation</strong></h1>
+            <h1><strong>Deductions</strong></h1>
 
         </div>
 
@@ -13,23 +13,23 @@
     <div class="col-lg-12 container contant-wraper">    
 
         <h3>
-                <a href="<?php echo site_url("payroll/generation/add");?>" class="btn btn-primary" style="width: 100px;">Add</a>
+            <a href="<?php echo site_url("slrydedad");?>" class="btn btn-primary" style="width: 100px;">Add</a>
                 <span class="confirm-div" style="float:right; color:green;"></span>
         </h3>
 
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover" id="myTable">
 
             <thead>
 
                 <tr>
-                
-                    <th>Generation Date</th>
-                    <th>Category</th>
-                    <th>Month</th>
+                    <th>Sl No.</th>
                     <th>Year</th>
-                    <th>Bank</th>
-                    <th>Option</th>
-
+                    <th>Month</th>
+                    <th>Employee code</th>
+                    <th>Name</th>
+                    <th>District</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
 
             </thead>
@@ -38,40 +38,24 @@
 
                 <?php 
                 
-                if($generation_dtls) {
+                if($deduction_dtls) {
 
-                    foreach($generation_dtls as $d_dtls) {
-
-                        foreach($category as $c_list) {
-
-                            if($d_dtls->catg_cd == $c_list->category_code) {
-
+                        $i = 1;
+                    
+                        foreach($deduction_dtls as $d_dtls) {
 
                 ?>
 
                         <tr>
-
-                            <td><?php echo date('d-m-Y', strtotime($d_dtls->trans_date)); ?></td>
-                            <td><?php echo $c_list->category_type; ?></td>
-                            <td><?php echo $d_dtls->sal_month; ?></td>
-                            <td><?php echo $d_dtls->sal_year; ?></td>
-                            <td><?php 
-
-                                    foreach($bank as $b_list) {
-
-                                        if($b_list->acc_code == $d_dtls->bank){
-
-                                            echo $b_list->bank_name;
-
-                                        }
-
-                                    }
-                                ?>
-                            </td>
-
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $d_dtls->ded_yr; ?></td>
+                            <td><?php echo date("F", mktime(0, 0, 0, $d_dtls->ded_month, 10)); ?></td>
+                            <td><?php echo $d_dtls->emp_code; ?></td>
+                            <td><?php echo $d_dtls->emp_name; ?></td>
+                            <td><?php echo $d_dtls->district_name; ?></td>
                             <td>
                             
-                                <a href="generation/edit?trans_no=<?php echo $d_dtls->trans_no; ?>&month=<?php echo $d_dtls->sal_month; ?>&year=<?php echo $d_dtls->sal_year; ?>" 
+                                <a href="slrydeded?emp_cd=<?php echo $d_dtls->emp_cd; ?>" 
                                     data-toggle="tooltip"
                                     data-placement="bottom" 
                                     title="Edit"
@@ -80,16 +64,13 @@
                                     <i class="fa fa-edit fa-2x" style="color: #007bff"></i>
                                     
                                 </a>
+                            </td>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+                            <td>    
                                 <button 
                                     type="button"
                                     class="delete"
-                                    date="<?php echo $d_dtls->trans_date; ?>"
-                                    id="<?php echo $d_dtls->trans_no; ?>"
-                                    month="<?php echo $d_dtls->sal_month; ?>"
-                                    year="<?php echo $d_dtls->sal_year; ?>"
+                                    id="<?php echo $d_dtls->emp_cd; ?>"
                                     data-toggle="tooltip"
                                     data-placement="bottom" 
                                     title="Delete"
@@ -105,11 +86,8 @@
                         </tr>
 
                 <?php
-                            }
                         
                         }
-
-                    } 
 
                     }
 
@@ -125,14 +103,14 @@
             <tfoot>
 
                 <tr>
-                
-                    <th>Generation Date</th>
-                    <th>Category</th>
-                    <th>Month</th>
+                    <th>Sl No.</th>
                     <th>Year</th>
-                    <th>Bank</th>
-                    <th>Option</th>
-
+                    <th>Month</th>
+                    <th>Employee code</th>
+                    <th>Name</th>
+                    <th>District</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             
             </tfoot>
@@ -149,16 +127,14 @@
 
         $('.delete').click(function () {
 
-            var date  = $(this).attr('date'),
-                id    = $(this).attr('id'),
-                month = $(this).attr('month'),
-                year  = $(this).attr('year');
+            var id = $(this).attr('id'),
+                date = $(this).attr('date');
 
             var result = confirm("Do you really want to delete this record?");
 
             if(result) {
 
-                window.location = "<?php echo site_url('payroll/generation/delete?date="+date+"&trans_no="+id+"&month="+month+"&year="+year+"');?>";
+                window.location = "<?php echo site_url('deddl?empcd="+id+"');?>";
 
             }
             
@@ -182,4 +158,10 @@
 
    <?php } ?>
    
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
 </script>
