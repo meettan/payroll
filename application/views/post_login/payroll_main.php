@@ -235,9 +235,11 @@
                                         <!-- <a href="<?php echo site_url("fertilizer/f_trial")?>">Return Report</a> -->
                                 <?php } ?>
                                 <?php if( $this->session->userdata['loggedin']['ho_flag']=="Y"){?>
-                                
-                                    <a href="<?php echo site_url("fert/rep/salerepbr");?>">Branch Wise Sale</a>
-                                    <a href="<?php echo site_url("fert/rep/rateslabho");?>">Sale Rate Slab</a>
+                                  
+                                    <!-- <a href="<?php echo site_url("paysliprep");?>">Payslip</a> -->
+                                    <a href="<?php echo site_url('reports/payslipreport'); ?>">Payslip</a>
+                                    <!-- <a href="<?php echo site_url("fert/rep/salerepbr");?>">Branch Wise Sale</a>
+                                    <a href="<?php echo site_url("fert/rep/rateslabho");?>">Sale Rate Slab</a> -->
                                     
                                 <?php } ?>
 

@@ -79,11 +79,11 @@ $route['deddl'] = 'salary/deduction_delete';
 
 $route['genspl'] = 'salary/generate_slip';
 $route['addgen'] = 'salary/generation_add';
+$route['unapslipdel'] = 'salary/generation_delete';
 /*$route['slrydeded'] = 'salary/deduction_edit';
 $route['deddl'] = 'salary/deduction_delete';*/
 
-
- 
+// $route['paysliprep'] = 'reports/payslipreport';
 
  
  

@@ -435,11 +435,39 @@
         
     }
 
+
+    public function generation_delete(){      //unapprove salary slip delete       
+
+        $where = array(
+            
+            "trans_date"  =>  $this->input->get('date'),
+
+            "trans_no"    =>  $this->input->get('trans_no'),
+
+            "sal_month"   => $this->input->get('month'),
+
+            "sal_year"    =>  $this->input->get('year')  ,
+            
+            "approval_status" =>'U'
+        );
+
+        $this->session->set_flashdata('msg', 'Successfully Deleted!');
+
+        $this->Salary_Process->f_delete('td_salary', $where);
+
+        $this->Salary_Process->f_delete('td_pay_slip', $where);
+        // echo $this->db->last_query();
+        // die();
+        redirect('genspl');
+    }
+
+
+
     public function generate_slip() {                                //Payslip Generation
 
         //Generation Details
         $generation['generation_dtls']  =   $this->Salary_Process->f_get_particulars("td_salary", NULL, array( "approval_status" => 'U'), 0);
-
+     
         //Category List
         $generation['category']         =   $this->Salary_Process->f_get_particulars("md_category", NULL, NULL, 0);
 

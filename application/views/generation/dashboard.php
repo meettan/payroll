@@ -147,7 +147,8 @@
 
             if(result) {
 
-                window.location = "<?php echo site_url('payroll/generation/delete?date="+date+"&trans_no="+id+"&month="+month+"&year="+year+"');?>";
+                window.location = "<?php echo site_url('unapslipdel?date="+date+"&trans_no="+id+"&month="+month+"&year="+year+"');?>";
+                // window.location = "<?php echo site_url('dstf?empcd="+id+"');?>";
 
             }
             
