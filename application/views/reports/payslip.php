@@ -21,7 +21,7 @@
   }
 </script>
 
-<!-- <?php
+ <?php
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($payslip_dtls)) {
 
@@ -59,7 +59,7 @@
                 return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
             }
 
-?>  -->
+?>  
     <div class="wraper">      
 
         <div class="col-lg-12 container contant-wraper">
