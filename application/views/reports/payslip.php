@@ -21,12 +21,12 @@
   }
 </script>
 
-<?php
+<!-- <?php
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($payslip_dtls)) {
 
 
-            function getIndianCurrency($number)
+            function getIndianCurrency_NW($number)
             {
                 $decimal = round($number - ($no = floor($number)), 2) * 100;
                 $hundred = null;
@@ -59,7 +59,7 @@
                 return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
             }
 
-?> 
+?>  -->
     <div class="wraper">      
 
         <div class="col-lg-12 container contant-wraper">
@@ -76,7 +76,7 @@
 
                         <h4>Pay Slip for <?php echo $this->input->post('sal_month').'-'.$this->input->post('year');?></h4>
 
-                        <!-- <h4><?php echo $payslip_dtls->emp_name; ?></h4> -->
+                        <h4><?php echo $payslip_dtls->emp_name; ?></h4>
 
                     </div>  
 
@@ -91,7 +91,8 @@
                             <th class="noborder" width="1%"></th>
                             <th class="noborder" width="30%"></th>
                             <th class="noborder" width="1%"></th>
-                            <th class="noborder" width="25%"></th>
+                            <th class="noborder" width="20%"></th>
+                            <th class="noborder" width="20%"></th>
                         </tr>
 
                         <tr>
@@ -99,26 +100,19 @@
                             <td>Employee Number</td>
                             <td class="left_algn">:</td>
                             <td class="left_algn"><?php echo $payslip_dtls->emp_no; ?></td>
-<!--                            <td></td> 
-                            <td>Grade</td>
-                            <td class="left_algn">:</td>
-                            <td class="left_algn"><?php echo $payslip_dtls->grade_pay; ?></td> -->
-
                             <td></td>
-                            <td >Date of Joining</td>
+                            <td >Date of Joining
+                            <!-- <td></td> -->
                             <td class="left_algn">:</td>
                             <td><?php if(($emp_dtls->join_dt != "0000-00-00") && ($emp_dtls->join_dt != NULL)){ echo date('d-m-Y', strtotime($emp_dtls->join_dt)); } ?></td>
-                          <!-- <td></td> -->
-                          <!-- <td>Grade pay :</td> -->
-                            <!-- <td> -->
-                            <!-- <td  width="1%"class="left_algn"><?php echo $payslip_dtls->grade_pay; ?></td> -->
+                          
                         </tr>
 
                         <tr>
 
-                            <!-- <td>Designation</td>
+                            <td>Designation</td>
                             <td class="left_algn">:</td>
-                            <td class="left_algn"><?php echo $payslip_dtls->designation; ?></td> -->
+                            <td class="left_algn"><?php echo $payslip_dtls->designation; ?></td>
                             <td></td>
                             <td>Date of Retirement</td>
                             <td class="left_algn">:</td>
@@ -132,7 +126,7 @@
                         </tr> -->
 
                     </table>   
-
+                    <br>
                     <table class="width" cellpadding="6" style="width:100%; ">
 
                         <thead>
@@ -158,63 +152,108 @@
                                 <td class="right_algn"><?php echo $payslip_dtls->ptax; ?></td>
                                 
                             </tr>
-                            
-                            <!-- <tr class="t2">
-                               
-                                <td class="left_algn">Grade Pay</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->grade_pay; ?></td>
-                                
-                                <td class="left_algn"></td>
-                                <td class="right_algn"></td>
-                                
-                            </tr> -->
-
                             <tr class="t2">
+                                
                                 <td class="left_algn">Dearness Allowance</td>
                                 <td class="right_algn"><?php echo $payslip_dtls->da_amt; ?></td>
+                                <td class="left_algn">Income Tax</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->itax; ?></td>
 
-                                <!-- <td class="left_algn">Provident Fund</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->pf; ?></td> -->
                             </tr>
-
-                            <!-- <tr class="t2">
-                                <td class="left_algn">I.R.</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->ir; ?></td>
-                                <td class="left_algn">LIC</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->lic; ?></td>
-                            </tr> -->
-
                             <tr class="t2">
+                               
+                                <!-- <td class="left_algn">Grade Pay</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->grade_pay; ?></td> -->
                                 <td class="left_algn">H.R.A.</td>
                                 <td class="right_algn"><?php echo $payslip_dtls->hra_amt; ?></td>
-                                <!-- <td class="left_algn">I-Tax</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->itax; ?></td> -->
+                               
+                                <td class="left_algn">Medical Insuarance</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->med_ins; ?></td>
+                            </tr>
+
+                            <tr class="t2">
+                            
+                                <td class="left_algn">Medical Allowance</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->med_allow; ?></td>
+                                <td class="left_algn">Insuarance</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->insuarance; ?></td>
+                            </tr>
+
+                            <tr class="t2">
+                                <!-- <td class="left_algn">Insuarance.</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->insuarance; ?></td> -->
+                                <!-- <td class="left_algn">ccs</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->ccs; ?></td> -->
+                            </tr>
+
+                            <tr class="t2">
+                            
+                                <td class="left_algn">Other Allowance</td> 
+                                <td class="right_algn"><?php echo $payslip_dtls->othr_allow; ?></td> 
+                                <td class="left_algn">CCS</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->ccs; ?></td>
 
                             </tr>
 
                             <tr class="t2">
-                                <td class="left_algn">Medical Allowance</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->med_allow; ?></td>
-                                <!-- <td class="left_algn">General Advance</td>
-                                <td class="right_algn"><?php echo $payslip_dtls->gen_adv; ?></td> -->
+                            <td class="left_algn"></td>
+                                <td class="right_algn"></td>
+                                <td class="left_algn">HBL</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->hbl; ?></td>
                             </tr>
 
-                            <!-- <tr class="t2"> -->
+                            <tr class="t2"> 
+                            <td class="left_algn"></td>
+                                <td class="right_algn"></td>
+                               
+                                <td class="left_algn">Telephone</td> 
+                               <td class="right_algn"><?php echo $payslip_dtls->telephone; ?></td>
+
+                         </tr>
+                         <tr class="t2"> 
                                 <!-- <td class="left_algn">Cash Allowance</td> -->
                                 <!-- <td class="right_algn"><?php echo $payslip_dtls->cash_allow; ?></td> -->
-                                <!-- <td class="left_algn">General Interest</td> -->
-                                <!-- <td class="right_algn"><?php echo $payslip_dtls->gen_intt; ?></td> -->
+                                <td></td>
+                                <td></td>
+                                <td class="left_algn">Medical Advance</td> 
+                               <td class="right_algn"><?php echo $payslip_dtls->med_adv; ?></td>
 
-                            <!-- </tr> -->
-
-                            <!-- <tr class="t2">
+                         </tr>
+                            <tr class="t2">
                                 <td class="left_algn"></td>
                                 <td class="right_algn"></td>
                                 <td class="left_algn">Festival Advance</td>
                                 <td class="right_algn"><?php echo $payslip_dtls->festival_adv; ?></td>
 
-                            </tr> -->
+                            </tr>
+                            <tr class="t2">
+                                <td class="left_algn"></td>
+                                <td class="right_algn"></td>
+                                <td class="left_algn">TF</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->tf; ?></td>
 
+                            </tr>
+                            <tr class="t2">
+                                <td class="left_algn"></td>
+                                <td class="right_algn"></td>
+                                <td class="left_algn">GPF</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->gpf; ?></td>
+
+                            </tr>
+                            <tr class="t2">
+                                <td class="left_algn"></td>
+                                <td class="right_algn"></td>
+                                <td class="left_algn">EPF</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->epf; ?></td>
+
+                            </tr>
+                            <tr class="t2">
+                                <td class="left_algn"></td>
+                                <td class="right_algn"></td>
+                                <td class="left_algn">Other Deduction</td>
+                                <td class="right_algn"><?php echo $payslip_dtls->other_deduction; ?></td>
+
+                            </tr>
                             <tr class="t2">
 
                                 <td class="left_algn">Total Earnings</td>
@@ -224,16 +263,22 @@
                                                                 // $payslip_dtls->ir +
                                                                 $payslip_dtls->hra_amt +
                                                                 $payslip_dtls->med_allow 
-                                                                // $payslip_dtls->cash_allow; echo $tot_er; ?>
+                                                                ; echo $tot_er; ?>
                                                                 </td>
-                                <!-- <td class="left_algn">Total Deductions</td>
+                                <td class="left_algn">Total Deductions</td>
                                 <td class="right_algn"><?php $tot_dd = $payslip_dtls->ptax + 
-                                                                $payslip_dtls->pf + 
+                                                                // $payslip_dtls->pf + 
                                                                 $payslip_dtls->itax + 
-                                                                $payslip_dtls->lic +
+                                                                $payslip_dtls->gpf +
                                                                 $payslip_dtls->festival_adv +
-                                                                $payslip_dtls->gen_adv +
-                                                                $payslip_dtls->gen_intt;  echo $tot_dd;?></td> -->
+                                                                $payslip_dtls->epf +
+                                                                $payslip_dtls->hbl +
+                                                                $payslip_dtls->insuarance+
+                                                                $payslip_dtls->ccs+
+                                                                $payslip_dtls->med_allow+
+                                                                $payslip_dtls->other_deduction+
+                                                                $payslip_dtls->tf+
+                                                                $payslip_dtls->telephone;  echo $tot_dd;?></td>
 
                             </tr>
 
@@ -255,7 +300,7 @@
 
                     </div>    
 
-                    <!-- <p><?php echo getIndianCurrency($tot_er - $tot_dd);?></p>    -->
+                    <!-- <p><?php echo getIndianCurrency_NW($tot_er - $tot_dd);?></p>    -->
 
                 </div>     
 

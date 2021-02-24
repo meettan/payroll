@@ -18,6 +18,12 @@
             if($_SERVER['REQUEST_METHOD'] == "POST") {
     
                 //Payslip
+                $empno     =  $this->input->post('emp_cd');
+    
+                $sal_month  = $this->input->post('sal_month');
+    
+                $sal_yr     = $this->input->post('year');
+
                 $where  =   array(
     
                     "emp_no"            =>  $this->input->post('emp_cd'),
@@ -32,8 +38,8 @@
     
                 $payslip['emp_dtls']    =   $this->Report_Process->f_get_particulars("md_employee", NULL, array("emp_code" =>  $this->input->post('emp_cd')), 1);
     
-                
-                $payslip['payslip_dtls']=   $this->Report_Process->f_get_particulars("td_pay_slip", NULL, $where, 1);
+                $payslip['payslip_dtls']    =   $this->Report_Process->f_get_emp_dtls($empno, $sal_month,$sal_yr);
+                // $payslip['payslip_dtls']=   $this->Report_Process->f_get_particulars("td_pay_slip", NULL, $where, 1);
                 // echo $this->db->last_query();
                 // die();
 
