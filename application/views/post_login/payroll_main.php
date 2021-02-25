@@ -153,6 +153,7 @@
                                     <a href="<?php echo site_url("slrydtl");?>">Earnings</a>
                                     <a href="<?php echo site_url("slryded");?>">Deductions</a>
                                     <a href="<?php echo site_url("genspl");?>">Generate Payslip</a>
+                                    <a href="<?php echo site_url("payapprv");?>">Approve</a> 
                                 </div>
                             </div>
                         <?php } ?>

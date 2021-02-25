@@ -71,6 +71,7 @@ $route['estem'] = 'admin/employee_edit';
 $route['slrydtl'] = 'salary/earning';
 $route['slryad'] = 'salary/earning_add';
 $route['slryed'] = 'salary/earning_edit'; 
+$route['payapprv'] = 'approves/payapprove';
 
 $route['slryded'] = 'salary/deduction';
 $route['slrydedad'] = 'salary/deduction_add';
