@@ -252,7 +252,7 @@
 
                     <label for="bank_name" class="col-sm-2 col-form-label">Bank Name:</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
 
                         <input type="text"
                             class= "form-control"
@@ -261,7 +261,17 @@
                         />
 
                     </div>
+                <label for="uan" class="col-sm-2 col-form-label">UAN.:</label>
 
+                    <div class="col-sm-4">
+
+                        <input type="text"
+                            class= "form-control required"
+                            name = "uan"
+                            id   = "uan"
+                        />
+
+                    </div>
                 </div> 
 
                 <div class="form-group row">
@@ -289,6 +299,7 @@
                         />
 
                     </div>
+                    
 
                 </div> 
 

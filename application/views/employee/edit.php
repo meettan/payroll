@@ -316,7 +316,7 @@
 
             <label for="pf_ac_no" class="col-sm-2 col-form-label">PF A/C No.:</label>
 
-            <div class="col-sm-10">
+            <div class="col-sm-4">
 
                 <input type="text"
                     class= "form-control"
@@ -326,7 +326,18 @@
                 />
 
             </div>
+            <label for="uan" class="col-sm-2 col-form-label">UAN.:</label>
 
+<div class="col-sm-4">
+
+    <input type="text"
+        class= "form-control"
+        name = "uan"
+        id   = "uan"
+        value="<?php echo $employee_dtls->uan; ?>"
+    />
+
+</div>
         </div> 
 
         <div class="form-group row">

@@ -26,38 +26,38 @@
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($payslip_dtls)) {
 
 
-            function getIndianCurrency_NW($number)
-            {
-                $decimal = round($number - ($no = floor($number)), 2) * 100;
-                $hundred = null;
-                $digits_length = strlen($no);
-                $i = 0;
-                $str = array();
-                $words = array(0 => '', 1 => 'One', 2 => 'Two',
-                    3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
-                    7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
-                    10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
-                    13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
-                    16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
-                    19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
-                    40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
-                    70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
-                $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
-                while( $i < $digits_length ) {
-                    $divider = ($i == 2) ? 10 : 100;
-                    $number = floor($no % $divider);
-                    $no = floor($no / $divider);
-                    $i += $divider == 10 ? 1 : 2;
-                    if ($number) {
-                        $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
-                        $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-                        $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
-                    } else $str[] = null;
-                }
-                $Rupees = implode('', array_reverse($str));
-                $paise = ($decimal) ? "and " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
-                return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
-            }
+            // function getIndianCurrency($number)
+            // {
+            //     $decimal = round($number - ($no = floor($number)), 2) * 100;
+            //     $hundred = null;
+            //     $digits_length = strlen($no);
+            //     $i = 0;
+            //     $str = array();
+            //     $words = array(0 => '', 1 => 'One', 2 => 'Two',
+            //         3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
+            //         7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
+            //         10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
+            //         13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
+            //         16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
+            //         19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
+            //         40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
+            //         70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
+            //     $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
+            //     while( $i < $digits_length ) {
+            //         $divider = ($i == 2) ? 10 : 100;
+            //         $number = floor($no % $divider);
+            //         $no = floor($no / $divider);
+            //         $i += $divider == 10 ? 1 : 2;
+            //         if ($number) {
+            //             $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+            //             $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+            //             $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
+            //         } else $str[] = null;
+            //     }
+            //     $Rupees = implode('', array_reverse($str));
+            //     $paise = ($decimal) ? "and " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
+            //     return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
+            // }
 
 ?>  
     <div class="wraper">      
@@ -254,19 +254,20 @@
                                 <td class="right_algn"><?php echo $payslip_dtls->other_deduction; ?></td>
 
                             </tr>
+                            
                             <tr class="t2">
 
-                                <td class="left_algn">Total Earnings</td>
-                                <td class="right_algn"><?php  $tot_er = $payslip_dtls->basic_pay + 
+                                <td class="left_algn"><b>Total Earnings</b></td>
+                                <td class="right_algn"><b><?php  $tot_er = $payslip_dtls->basic_pay + 
                                                                 //  $payslip_dtls->grade_pay +
                                                                 $payslip_dtls->da_amt + 
                                                                 // $payslip_dtls->ir +
                                                                 $payslip_dtls->hra_amt +
                                                                 $payslip_dtls->med_allow 
                                                                 ; echo $tot_er; ?>
-                                                                </td>
-                                <td class="left_algn">Total Deductions</td>
-                                <td class="right_algn"><?php $tot_dd = $payslip_dtls->ptax + 
+                                                               </b> </td>
+                                <td class="left_algn"><b>Total Deductions</b></td>
+                                <td class="right_algn"><b><?php $tot_dd = $payslip_dtls->ptax + 
                                                                 // $payslip_dtls->pf + 
                                                                 $payslip_dtls->itax + 
                                                                 $payslip_dtls->gpf +
@@ -278,10 +279,10 @@
                                                                 $payslip_dtls->med_allow+
                                                                 $payslip_dtls->other_deduction+
                                                                 $payslip_dtls->tf+
-                                                                $payslip_dtls->telephone;  echo $tot_dd;?></td>
+                                                                $payslip_dtls->telephone;  echo $tot_dd;?></td></td>
 
                             </tr>
-
+                          
                             <tr class="t2">
 
                                 <td class="left_algn"></td>
@@ -296,12 +297,11 @@
                     </table>
                     
                     <div>
-                        <p style="display: inline;">Amount (<small>in words</small>)</p>
-
+                       <p style="display: inline;">Amount (<small>in words</small>):
+                       <b>   <?php echo getIndianCurrency($tot_er - $tot_dd);?></p></b>
                     </div>    
-
-                    <!-- <p><?php echo getIndianCurrency_NW($tot_er - $tot_dd);?></p>    -->
-
+         
+                  
                 </div>     
 
             </div>                

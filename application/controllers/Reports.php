@@ -7,7 +7,8 @@
 
 			$this->load->model('Login_Process');
             $this->load->model('Report_Process');
-			$this->load->model('Admin_Process');
+            $this->load->model('Admin_Process');
+            $this->load->helper('paddyrate_helper');
 		}
 
 		

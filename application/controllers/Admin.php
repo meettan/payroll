@@ -137,6 +137,8 @@
 					"bank_ac_no"       =>  $this->input->post('bank_ac_no'),
 	
 					"pf_ac_no"         =>  $this->input->post('pf_ac_no'),
+
+					"uan"              =>  $this->input->post('uan'),
 	
 					"basic_pay"        =>  $this->input->post('basic_pay'),
 	
@@ -223,6 +225,8 @@
 					"bank_ac_no"       =>  $this->input->post('bank_ac_no'),
 	
 					"pf_ac_no"         =>  $this->input->post('pf_ac_no'),
+
+					"uan"              =>  $this->input->post('uan'),
 	
 					"basic_pay"        =>  $this->input->post('basic_pay'),
 	
@@ -252,7 +256,7 @@
 				$select = array ("emp_code", "emp_name", "emp_catg","emp_dist", "dob","email", "phn_no",
 								 "designation", "department","emp_addr",
 								 "pan_no", "bank_name", "bank_ac_no", "join_dt","ret_dt",
-								 "pf_ac_no","basic_pay","aadhar_no"
+								 "pf_ac_no","uan","basic_pay","aadhar_no"
 								 );
 	
 	
