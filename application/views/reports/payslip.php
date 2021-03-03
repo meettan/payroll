@@ -70,9 +70,9 @@
 
                     <div style="text-align:center;">
 
-                        <h3>WEST BENGAL STATE CONSUMERS' CO-OPERATIVE FEDERATION LTD.</h3>
+                        <h3>THE WEST BENGAL STATE CO.OP.MARKETING FEDERATION LTD.</h3>
 
-                        <h4>P-1, Hide Lane, Akbar Mansion 3rd Floor Kolkata-700073</h4>
+        <h4>HEAD OFFICE: SOUTHEND CONCLAVE, 3RD FLOOR, 1582 RAJDANGA MAIN ROAD, KOLKATA-700107.</h4>
 
                         <h4>Pay Slip for <?php echo $this->input->post('sal_month').'-'.$this->input->post('year');?></h4>
 

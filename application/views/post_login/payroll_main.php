@@ -239,6 +239,8 @@
                                   
                                     <!-- <a href="<?php echo site_url("paysliprep");?>">Payslip</a> -->
                                     <a href="<?php echo site_url('reports/payslipreport'); ?>">Payslip</a>
+                                    <a href="<?php echo site_url('reports/paystatementreport'); ?>">Salary Statement Month Wise</a>
+                                    <a href="<?php echo site_url('reports/totaldeduction'); ?>">Total Deduction</a>
                                     <!-- <a href="<?php echo site_url("fert/rep/salerepbr");?>">Branch Wise Sale</a>
                                     <a href="<?php echo site_url("fert/rep/rateslabho");?>">Sale Rate Slab</a> -->
                                     

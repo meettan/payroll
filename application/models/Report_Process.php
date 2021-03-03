@@ -58,6 +58,34 @@
 
 		}
 
+		public function f_get_totaldeduction($from_date, $to_date) {
+
+			$sql	=	"SELECT a.emp_no,
+								b.emp_name,
+								SUM(a.insuarance) insuarance,
+								SUM(a.ccs) ccs,
+								SUM(a.hbl) hbl,
+								SUM(a.telephone) telephone,
+								SUM(a.med_adv) med_adv,
+								SUM(a.festival_adv) festival_adv,
+								sum(a.tf)tf,
+								sum(a.med_ins)med_ins,
+								sum(a.comp_loan)comp_loan,
+								sum(a.ptax)ptax,
+								sum(a.gpf)gpf,
+								sum(a.epf)epf,
+								sum(a.other_deduction)other_deduction,
+								SUM(itax) itax FROM td_pay_slip a,md_employee b
+											   WHERE a.emp_no=b.emp_code
+											   and  trans_date BETWEEN '$from_date' AND '$to_date'
+											   GROUP BY a.emp_no, b.emp_name
+						";
+			
+			$result = $this->db->query($sql);
+
+			return $result->result();
+
+		}
 
 		public function f_get_emp_dtls($empno, $sal_month,$sal_yr){
 

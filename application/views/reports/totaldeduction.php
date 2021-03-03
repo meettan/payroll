@@ -43,7 +43,7 @@
 
             <form method="POST" 
                 id="form"
-                action="<?php echo site_url("payroll/totaldeduction/report");?>" >
+                action="<?php echo site_url("reports/totaldeduction");?>" >
 
                 <div class="form-header">
                 
@@ -107,41 +107,41 @@
     
     else if($_SERVER['REQUEST_METHOD'] == 'POST') { 
         
-        function getIndianCurrency($number)
-        {
-            $decimal = round($number - ($no = floor($number)), 2) * 100;
-            $hundred = null;
-            $digits_length = strlen($no);
-            $i = 0;
-            $str = array();
-            $words = array(0 => '', 1 => 'One', 2 => 'Two',
-                3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
-                7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
-                10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
-                13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
-                16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
-                19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
-                40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
-                70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
-            $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
-            while( $i < $digits_length ) {
-                $divider = ($i == 2) ? 10 : 100;
-                $number = floor($no % $divider);
-                $no = floor($no / $divider);
-                $i += $divider == 10 ? 1 : 2;
-                if ($number) {
-                    $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
-                    $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-                    $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
-                } else $str[] = null;
-            }
-            $Rupees = implode('', array_reverse($str));
-            $paise = ($decimal) ? "and " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
-            return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
-        }    
+    //     function getIndianCurrency($number)
+    //     {
+    //         $decimal = round($number - ($no = floor($number)), 2) * 100;
+    //         $hundred = null;
+    //         $digits_length = strlen($no);
+    //         $i = 0;
+    //         $str = array();
+    //         $words = array(0 => '', 1 => 'One', 2 => 'Two',
+    //             3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
+    //             7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
+    //             10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
+    //             13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
+    //             16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
+    //             19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
+    //             40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
+    //             70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
+    //         $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
+    //         while( $i < $digits_length ) {
+    //             $divider = ($i == 2) ? 10 : 100;
+    //             $number = floor($no % $divider);
+    //             $no = floor($no / $divider);
+    //             $i += $divider == 10 ? 1 : 2;
+    //             if ($number) {
+    //                 $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+    //                 $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+    //                 $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
+    //             } else $str[] = null;
+    //         }
+    //         $Rupees = implode('', array_reverse($str));
+    //         $paise = ($decimal) ? "and " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
+    //         return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
+    //     }    
         
         
-    ?>
+    // ?>
     
     <div class="wraper"> 
 
@@ -153,11 +153,15 @@
 
                     <div style="text-align:center;">
 
-                        <h3>WEST BENGAL STATE CONSUMERS' CO-OPERATIVE FEDERATION LTD.</h3>
+                        <h3>THE WEST BENGAL STATE CO.OP.MARKETING FEDERATION LTD.</h3>
 
-                        <h3>P-1, Hide Lane, Akbar Mansion, 3rd Floor, Kolkata-700073</h3>
+                        <h3>HEAD OFFICE: SOUTHEND CONCLAVE, 3RD FLOOR, 1582 RAJDANGA MAIN ROAD, KOLKATA-700107.</h3>
 
-                        <h3>Total deduction of Regular employees during the year <?php echo $year->param_value;?></h3>
+                        <h3>Total deduction of Regular employees From <?php echo date('d/m/Y',strtotime($this->input->post('from_date'))).' To '.date('d/m/Y',strtotime($this->input->post('to_date')));?> 
+                        <!-- <h4>Pay Slip for <?php echo date($this->input->post('sal_month'),"d/m/Y").'-'.$this->input->post('year');?></h4> -->
+                      
+                        <!-- <?php echo $year->param_value;?> -->
+                        </h3>
 
                     </div>
 
@@ -177,19 +181,33 @@
 
                                 <th>Name of Emplyees</th>
 
-                                <th>General Advance</th>
+                                <th>Insuarance</th>
 
-                                <th>General Interest</th>
+                                <th>CCS</th>
 
-                                <th>Festival Advance</th>
+                                <th>HBL</th>
 
-                                <th>LIC</th>
+                                <th>Telephone</th>
 
-                                <th>PF</th>
+                                <th>Medical Advance</th>
+
+                               <th>Festival Advance</th>
+
+                               <th>TF</th>
+
+                               <th>Medical Insuarance</th>
+
+                               <th>Comp Loan</th>
 
                                 <th>P-Tax</th>
 
                                 <th>I-Tax</th>
+
+                                <th>GPF</th>
+
+                                <th>EPF</th>
+
+                                <th>Other Deduction</th>
 
                             </tr>
 
@@ -203,25 +221,24 @@
 
                                 $i  =   1;
 
-                                $tot_ga = $tot_gi = $tot_fa = $tot_lic =
-                                
-                                $tot_pf = $tot_ptax = $tot_itax = 0;
+$tot_ins = $tot_css= $tot_hbl = $tot_tel =$tot_med_adv =$tot_fa =$tot_tf = $tot_med_ins = $tot_comp_loan = $tot_ptax = $tot_itax = $tot_gpf = $tot_epf = $tot_other_deduction = 0;
                                     
                                 foreach($total_deduct as $td_list) {
 
-                                    $tot_ga += $td_list->gen_adv;
-
-                                    $tot_gi += $td_list->gen_intt;
-
+                                    $tot_ins += $td_list->insuarance;
+                                    $tot_css+= $td_list->ccs;
+                                    $tot_hbl += $td_list->hbl;
+                                    $tot_tel += $td_list->telephone;
+                                    $tot_med_adv += $td_list->med_adv;
                                     $tot_fa += $td_list->festival_adv;
-
-                                    $tot_lic += $td_list->lic;
-
-                                    $tot_pf += $td_list->pf;
-
+                                    $tot_tf += $td_list->tf;
+                                    $tot_med_ins += $td_list->med_ins;
+                                    $tot_comp_loan += $td_list->comp_loan;
                                     $tot_ptax += $td_list->ptax;
-
                                     $tot_itax += $td_list->itax;
+                                    $tot_gpf += $td_list->gpf;
+                                    $tot_epf += $td_list->epf;
+                                    $tot_other_deduction += $td_list->other_deduction;
                                 ?>
 
                                     <tr>
@@ -229,21 +246,20 @@
                                         <td><?php echo $i++; ?></td>
 
                                         <td><?php echo $td_list->emp_name; ?></td>
-
-                                        <td><?php echo $td_list->gen_adv; ?></td>
-                                        
-                                        <td><?php echo $td_list->gen_intt; ?></td>
-
+                                        <td><?php echo $td_list->insuarance; ?></td>
+                                        <td><?php echo $td_list->ccs; ?></td>
+                                        <td><?php echo $td_list->hbl; ?></td> 
+                                        <td><?php echo $td_list->telephone; ?></td>
+                                        <td><?php echo $td_list->med_adv; ?></td>
                                         <td><?php echo $td_list->festival_adv; ?></td>
-
-                                        <td><?php echo $td_list->lic; ?></td>
-                                        
-                                        <td><?php echo $td_list->pf; ?></td>
-
+                                        <td><?php echo $td_list->tf; ?></td>
+                                        <td><?php echo $td_list->med_ins; ?></td>
+                                        <td><?php echo $td_list->comp_loan; ?></td>
                                         <td><?php echo $td_list->ptax; ?></td>
-
                                         <td><?php echo $td_list->itax; ?></td>
-
+                                        <td><?php echo $td_list->gpf; ?></td>
+                                        <td><?php echo $td_list->epf; ?></td>
+                                        <td><?php echo $td_list->other_deduction; ?></td>
                                     </tr>
 
                             <?php
@@ -257,19 +273,39 @@
 
                                         <td colspan="2">Total Amount</td>
 
-                                        <td> Rs. <?php echo $tot_ga; ?></td>
+                                        <td> Rs. <?php echo $tot_ins; ?></td>
 
-                                        <td> Rs. <?php echo $tot_gi; ?></td>
+                                        <td> Rs. <?php echo $tot_css; ?></td>
+
+                                        <td> Rs. <?php echo $tot_hbl; ?></td>
+
+                                        <td> Rs. <?php echo $tot_tel; ?></td>
+
+                                        <td> Rs. <?php echo $tot_med_adv; ?></td>
 
                                         <td> Rs. <?php echo $tot_fa; ?></td>
 
-                                        <td> Rs. <?php echo $tot_lic; ?></td>
+                                        <td> Rs. <?php echo $tot_tf; ?></td>
 
-                                        <td> Rs. <?php echo $tot_pf; ?></td>
+                                        <td> Rs. <?php echo $tot_med_ins; ?></td>
+
+                                        <td> Rs. <?php echo $tot_comp_loan; ?></td>
+
+                                        <!-- <td> Rs. <?php echo $tot_comp_loan; ?></td> -->
+
+                                        <!-- <td> Rs. <?php echo $tot_pf; ?></td> -->
                                         
                                         <td> Rs. <?php echo $tot_ptax; ?></td>
 
                                         <td> Rs. <?php echo $tot_itax; ?></td>
+
+                                        <td> Rs. <?php echo $tot_gpf; ?></td>
+
+                                        <td> Rs. <?php echo $tot_epf; ?></td>
+
+                                        <td> Rs. <?php echo $tot_other_deduction; ?></td>
+
+                                        
 
                                     </tr>
 
