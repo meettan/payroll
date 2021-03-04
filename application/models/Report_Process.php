@@ -31,6 +31,26 @@
 
 		}
 
+
+		public function f_get_particulars_in($table_name, $where_in=NULL, $where=NULL) {
+
+			if(isset($where)){
+
+				$this->db->where($where);
+
+			}
+
+			if(isset($where_in)){
+
+				$this->db->where_in('emp_no', $where_in);
+
+			}
+			
+			$result	=	$this->db->get($table_name);
+
+			return $result->result();
+
+		}
         public function f_edit($table_name, $data_array, $where) {
 
 			$this->db->where($where);

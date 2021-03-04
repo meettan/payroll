@@ -67,44 +67,44 @@
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-        function getIndianCurrency($number)
-        {
-            $decimal = round($number - ($no = floor($number)), 2) * 100;
-            $hundred = null;
-            $digits_length = strlen($no);
-            $i = 0;
-            $str = array();
-            $words = array(0 => '', 1 => 'One', 2 => 'Two',
-                3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
-                7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
-                10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
-                13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
-                16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
-                19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
-                40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
-                70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
-            $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
-            while( $i < $digits_length ) {
-                $divider = ($i == 2) ? 10 : 100;
-                $number = floor($no % $divider);
-                $no = floor($no / $divider);
-                $i += $divider == 10 ? 1 : 2;
-                if ($number) {
-                    $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
-                    $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
-                    $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
-                } else $str[] = null;
-            }
-            $Rupees = implode('', array_reverse($str));
-            $paise = ($decimal) ? "and " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
-            return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
-        }   
+        // function getIndianCurrency($number)
+        // {
+        //     $decimal = round($number - ($no = floor($number)), 2) * 100;
+        //     $hundred = null;
+        //     $digits_length = strlen($no);
+        //     $i = 0;
+        //     $str = array();
+        //     $words = array(0 => '', 1 => 'One', 2 => 'Two',
+        //         3 => 'Three', 4 => 'Four', 5 => 'Five', 6 => 'Six',
+        //         7 => 'Seven', 8 => 'Eight', 9 => 'Nine',
+        //         10 => 'Ten', 11 => 'Eleven', 12 => 'Twelve',
+        //         13 => 'Thirteen', 14 => 'Fourteen', 15 => 'Fifteen',
+        //         16 => 'Sixteen', 17 => 'Seventeen', 18 => 'Eighteen',
+        //         19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
+        //         40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
+        //         70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
+        //     $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
+        //     while( $i < $digits_length ) {
+        //         $divider = ($i == 2) ? 10 : 100;
+        //         $number = floor($no % $divider);
+        //         $no = floor($no / $divider);
+        //         $i += $divider == 10 ? 1 : 2;
+        //         if ($number) {
+        //             $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+        //             $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+        //             $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
+        //         } else $str[] = null;
+        //     }
+        //     $Rupees = implode('', array_reverse($str));
+        //     $paise = ($decimal) ? "and " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
+        //     return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise .' Only.';
+        // }   
         
-        $bp = $gp  =  $gross = $pf = $ptax = $tot_deduct = $net =
+         $bp = $gp  =  $gross = $pf = $ptax = $tot_deduct = $net =$tf=$gpf=$epf=
         
-        $basic = $da  =  $ir = $hra = $ma = $ca = $ga = $gi =
+         $basic = $da  =  $ir = $hra = $ma = $oa = $ccs = $ins = $gpf= $tf=$epf=$hbl=$tel=$med_adv=$med_ins=
 
-        $fa = $lic  =  $itx = $pa = 0;        
+         $comp_loan= $fa = $lic  =  $itx = $pa = 0;        
         
   ?>
 
@@ -118,19 +118,19 @@
 
                     <div style="text-align:center;">
 
-                        <h3>WEST BENGAL STATE CONSUMERS' CO-OPERATIVE FEDERATION LTD.</h3>
+                        <h3>THE WEST BENGAL STATE CO.OP.MARKETING FEDERATION LTD.</h3>
 
-                        <h3>P-1, Hide Lane, Akbar Mansion, 3rd Floor, Kolkata-700073</h3>
+                        <h3>HEAD OFFICE: SOUTHEND CONCLAVE, 3RD FLOOR, 1582 RAJDANGA MAIN ROAD, KOLKATA-700107.</h3>
 
                         <h3>SALARY FOR THE <?php if ($this->input->post('category') == 1) {
                             
-                            echo "REGULAR ";
+                            echo "GOVT ";
                         
                         }
                         
                         else if ($this->input->post('category') == 2){
 
-                            echo "CONTRACTUAL Basis ";
+                            echo "BENFED RAGULAR ";
 
                         } 
                         
@@ -153,19 +153,20 @@
 
                         <?php 
 
-                            if($this->input->post('category') == 2 || $this->input->post('category') == 3) {
+                            if($this->input->post('category') == 0 || $this->input->post('category') == 3) {
                             
                         ?>
                             <tr>
                             
                                 <th>Emplyee<br>Code</th>
                                 <th>Emplyee Name</th>
-                                <th>Day</th>
+                                <!-- <th>Day</th> -->
+                                <th></th>
                                 <th>Designation</th>
                                 <?php echo ($this->input->post('category') == 3)?"<th></th>":"";?>
-                                <th>Pay</th>
-                                <th>Gross</th>
-                                <th>Employee<br>12% P.F</th>
+                                <th>Basic Pay</th>
+                                <!-- <th>Gross</th> -->
+                                <th>Employee<br> P.F</th>
                                 <th>P-tax</th>
                                 <th>Total Deduction</th>
                                 <th>Net Amount</th>
@@ -187,15 +188,15 @@
 
                                             if($s_list->emp_no  ==  $a_dtls->emp_cd) {
 
-                                                $pa += $s_list->band_pay * $a_dtls->no_of_days;
+                                                // $pa += $s_list->band_pay * $a_dtls->no_of_days;
 
-                                                $pf += $s_list->pf;
+                                                // $pf += $s_list->pf;
 
-                                                $ptax += $s_list->ptax;
+                                                // $ptax += $s_list->ptax;
 
-                                                $tot_deduct += $s_list->tot_deduction;
+                                                // $tot_deduct += $s_list->tot_deduction;
 
-                                                $net += $s_list->net_amount;
+                                                // $net += $s_list->net_amount;
 
                             ?>
 
@@ -203,16 +204,16 @@
 
                                         <td><?php echo $s_list->emp_no; ?></td>
                                         <td><?php echo $s_list->emp_name; ?></td>
-                                        <td><?php echo $a_dtls->no_of_days; ?></td>
-                                        <td><?php echo $s_list->designation; ?></td>
-                                        <td><?php echo $s_list->band_pay." X ".$a_dtls->no_of_days; ?></td>
+                                        <!-- <td><?php echo $a_dtls->no_of_days; ?></td> -->
+                                         <td><?php echo $s_list->designation; ?></td> 
+                                        <td><?php echo $s_list->basic_pay; ?></td>
 
+                                           <!-- <td><?php echo $s_list->band_pay * $a_dtls->no_of_days; ?></td>
                                         <td><?php echo $s_list->band_pay * $a_dtls->no_of_days; ?></td>
-                                        <td><?php echo $s_list->band_pay * $a_dtls->no_of_days; ?></td>
-                                        <td><?php echo $s_list->pf; ?></td>
+                                        <td><?php echo $s_list->pf; ?></td> -->
                                         <td><?php echo $s_list->ptax; ?></td>
                                         <td><?php echo $s_list->tot_deduction; ?></td>
-                                        <td><?php echo $s_list->net_amount; ?></td>
+                                        <td><?php echo $s_list->net_amount; ?></td> 
                                         <td></td>
 
                                     </tr>
@@ -232,7 +233,7 @@
 
                                         <td><?php echo $pa; ?></td>
 
-                                        <td><?php echo $pf; ?></td>
+                                        <!-- <td><?php echo $pf; ?></td> -->
 
                                         <td><?php echo $ptax; ?></td>
 
@@ -252,15 +253,15 @@
 
                                 foreach($list as $s_list) {
 
-                                    $pa += $s_list->band_pay;
+                                    // $pa += $s_list->band_pay;
 
-                                    $pf += $s_list->pf;
+                                    // $pf += $s_list->pf;
 
-                                    $ptax += $s_list->ptax;
+                                    // $ptax += $s_list->ptax;
 
-                                    $tot_deduct += $s_list->tot_deduction;
+                                    // $tot_deduct += $s_list->tot_deduction;
 
-                                    $net += $s_list->net_amount;
+                                    // $net += $s_list->net_amount;
 
                             ?>
 
@@ -270,12 +271,14 @@
                                     <td><?php echo $s_list->emp_name; ?></td>
                                     <td></td>
                                     <td><?php echo $s_list->designation; ?></td>
-                                    <td><?php echo $s_list->band_pay; ?></td>
-                                    <td><?php echo $s_list->band_pay; ?></td>
-                                    <td><?php echo $s_list->pf; ?></td>
+                                   <td><?php echo $s_list->basic_pay; ?></td> 
+                                   <td><?php echo $s_list->da_amt; ?></td> 
+                                   <td><?php echo $s_list->hra_amt; ?></td> 
+                                    <!-- <td><?php echo $s_list->band_pay; ?></td> -->
+                                    <!-- <td><?php echo $s_list->pf; ?></td>  -->
                                     <td><?php echo $s_list->ptax; ?></td>
-                                    <td><?php echo $s_list->tot_deduction; ?></td>
-                                    <td><?php echo $s_list->net_amount; ?></td>
+                                     <td><?php echo $s_list->tot_deduction; ?></td>
+                                    <td><?php echo $s_list->net_amount; ?></td> 
                                     <td></td>
 
                                 </tr>
@@ -289,18 +292,18 @@
                                 <tr>
                                     
                                     <td colspan="4">Total</td>
-
+<!-- 
                                     <td><?php echo $pa; ?></td>
 
                                     <td><?php echo $pa; ?></td>
 
-                                    <td><?php echo $pf; ?></td>
+                                    <td><?php echo $pf; ?></td> -->
 
-                                    <td><?php echo $ptax; ?></td>
+                                    <!-- <td><?php echo $ptax; ?></td>
 
                                     <td><?php echo $tot_deduct; ?></td>
 
-                                    <td><?php echo $net; ?></td>
+                                    <td><?php echo $net; ?></td> -->
 
                                     <td></td>
                                     
@@ -323,27 +326,27 @@
                         
                         <tr>
                             
-                            <th width="15px">Sl<br>No.</th>
+                            <th width="15px">Sl No.</th>
                             <th width="200px">Emplyee Name</th>
                             <th width="15px">Desig</th>
                             <th width="15px">Basic Pay</th>
-                            <th width="15px">Grade Pay</th>
-                            <!-- <th width="15px">Basic Pay</th> -->
-                            <th width="15px"><br>D.A.</th>
-                            <th width="15px">I.R.</th>
-                            <th width="15px">12 %<br>H.R.A.</th>
-                            <th width="15px">M.A.</th>
-                            <th width="15px">Cash Allow</th>
-                            <th width="15px">Gross</th>
-
-                            <th width="15px">General Adv.</th>
-                            <th width="15px">Intt.</th>
+                            <th width="15px">D.A.</th>
+                            <th width="15px">H.R.A.</th>
+                            <th width="15px">Medical allow.</th>
+                            <th width="15px">Other Allow</th>
+                            <th width="15px">insuarance</th>
+                            <th width="15px">CCS</th>
+                            <th width="15px">HBL</th>
+                            <th width="15px">Telephone</th>
+                            <th width="15px">Med Advance</th>
                             <th width="15px">Festival Adv.</th>
-                            <th width="15px">SSS of<br>L.I.C</th>
-
-                            <th width="15px">Employee<br>12% P.F</th>
+                            <th width="15px">TF.</th>
+                            <th width="15px">Med Ins.</th>
                             <th width="15px">P-tax</th>
                             <th width="15px">I-Tax</th>
+                            <th width="15px">EPF.</th>
+                            <th width="15px">GPF.</th>
+                            
                             <th width="15px">Total Deduction</th>
                             <th width="15px">Net Amount</th>
                             <th>Remarks</th>
@@ -363,81 +366,76 @@
                                 $i = 1;
                             foreach($list as $s_list) {
 
-                                $bp += $s_list->band_pay;
+                                // $bp += $s_list->band_pay;
                                 
-                                $gp += $s_list->grade_pay;
+                                // $gp += $s_list->grade_pay;
 
-                                // $basic += $s_list->basic_pay;
+                                 $basic += $s_list->basic_pay;
+                                 $da +=  $s_list->da_amt;
+                                // $ir +=  $s_list->ir;
+                                 $hra += $s_list->hra_amt;
+                                 $ma += $s_list->med_allow;
+                                 $oa += $s_list->othr_allow;
 
-                                $da +=  $s_list->da;
-
-                                $ir +=  $s_list->ir;
-
-                                $hra += $s_list->hra;
-
-                                $ma += $s_list->ma;
-
-                                $ca += $s_list->cash_allow;
-
-                                $gross += $s_list->gross;
-
-                                $ga +=  $s_list->gen_adv;
-
-                                $gi +=  $s_list->gen_intt;
-
+                                // $gross += $s_list->gross;
+                                // $ga +=  $s_list->gen_adv;
+                                $ins +=  $s_list->insuarance;
+                                $ccs +=  $s_list->ccs;
+                                $hbl +=  $s_list->hbl;
+                                $tel +=  $s_list->telephone;
+                                $med_adv+=  $s_list->med_adv;
                                 $fa +=  $s_list->festival_adv;
-
-                                $lic +=  $s_list->lic;
-
-                                $pf += $s_list->pf;
-
+                                $tf +=  $s_list->tf;
+                                $med_ins+=  $s_list->med_ins;
                                 $ptax += $s_list->ptax;
-
                                 $itx += $s_list->itax;
-
+                                $epf +=  $s_list->epf;
+                                $gpf += $s_list->gpf;
+                               
                                 $tot_deduct += $s_list->tot_deduction;
-
                                 $net += $s_list->net_amount;
 
                         ?>        
 
-                        <tr <?php echo ($tempCount == 10)? 'class="breakAfter"':'';  ?>>
+                        <tr <?php echo ($tempCount == 20)? 'class="breakAfter"':'';  ?>>
 
                             <?php foreach($count as $row){
 
-                                    if(($row->emp_no == $s_list->emp_no) && ($row->emp_no != $temp_var)){
+                                    if(($row->emp_code == $s_list->emp_code) && ($row->emp_code != $temp_var)){
 
-                                        echo '<td rowspan="'.$row->count.'">'.$i++.'</td>';
+                                        echo '<td >'.$i++.'</td>';
 
-                                        echo '<td rowspan="'.$row->count.'">'.$s_list->emp_name.'</td>';
+                                        echo '<td >'.$s_list->emp_name.'</td>';
 
-                                        $temp_var = $row->emp_no;
+                                         $temp_var = $row->emp_code;
                                         
                                     }
 
                                 }
                                 
                             ?>  
+                            
                             <td><?php echo $s_list->designation; ?></td>
-                            <td><?php echo $s_list->band_pay; ?></td>
-                            <td><?php echo $s_list->grade_pay; ?></td>
-
-                            <!-- <td><?php echo $s_list->basic_pay; ?></td> -->
-                            <td><?php echo $s_list->da; ?></td>
-                            <td><?php echo $s_list->ir; ?></td>
-                            <td><?php echo $s_list->hra; ?></td>
-                            <td><?php echo $s_list->ma; ?></td>
-                            <td><?php echo $s_list->cash_allow; ?></td>
-                            <td><?php echo $s_list->gross; ?></td>
-
-                            <td><?php echo $s_list->gen_adv; ?></td>
-                            <td><?php echo $s_list->gen_intt; ?></td>
+                            <td><?php echo $s_list->basic_pay; ?></td>
+                            <td><?php echo $s_list->da_amt; ?></td>
+                            <td><?php echo $s_list->hra_amt; ?></td>
+                            <td><?php echo $s_list->med_allow; ?></td>
+                            <td><?php echo $s_list->othr_allow; ?></td>
+                            <td><?php echo $s_list->insuarance; ?></td>
+                            <td><?php echo $s_list->ccs; ?></td>
+                            <td><?php echo $s_list->hbl; ?></td>
+                            <td><?php echo $s_list->telephone; ?></td>
+                            <td><?php echo $s_list->med_adv; ?></td>
                             <td><?php echo $s_list->festival_adv; ?></td>
-                            <td><?php echo $s_list->lic; ?></td>
-                            <td><?php echo $s_list->pf; ?></td>
+                            <td><?php echo $s_list->tf; ?></td>
+                            <td><?php echo $s_list->med_ins; ?></td>
+                            <td><?php echo $s_list->comp_loan; ?></td>
                             <td><?php echo $s_list->ptax; ?></td>
                             <td><?php echo $s_list->itax; ?></td>
-
+                            <td><?php echo $s_list->epf; ?></td>
+                            <td><?php echo $s_list->gpf; ?></td>
+                            
+                            <td><?php echo $s_list->other_deduction; ?></td>
                             <td><?php echo $s_list->tot_deduction; ?></td>
                             <td><?php echo $s_list->net_amount; ?></td>
                             <td><?php echo $s_list->remarks; ?></td>
@@ -456,41 +454,37 @@
                                     
                                     <td colspan="3">Total</td>
 
-                                    <td><?php echo $bp; ?></td>
-
-                                    <td><?php echo $gp; ?></td>
-
-                                    <!-- <td><?php echo $basic; ?></td> -->
+                                   
+                                    <td><?php echo $basic; ?></td>
 
                                     <td><?php echo $da; ?></td>
 
-                                    <td><?php echo $ir; ?></td>
+                                    <!-- <td><?php echo $ir; ?></td> -->
 
                                     <td><?php echo $hra; ?></td>
 
                                     <td><?php echo $ma; ?></td>
 
-                                    <td><?php echo $ca; ?></td>
+                                    <td><?php echo $oa; ?></td>
 
-                                    <td><?php echo $gross; ?></td>
+                                    <td><?php echo $ins; ?></td>
 
-                                    <td><?php echo $ga; ?></td>
-
-                                    <td><?php echo $gi; ?></td>
-
+                                    <td><?php echo $ccs; ?></td>
+                                    <td><?php echo $hbl; ?></td>
+                                    <td><?php echo $tel; ?></td>
+                                    <td><?php echo $med_adv; ?></td>
                                     <td><?php echo $fa; ?></td>
-
-                                    <td><?php echo $lic; ?></td>
-
-                                    <td><?php echo $pf; ?></td>
-                                    
+                                    <td><?php echo $tf; ?></td>
+                                    <td><?php echo $med_ins; ?></td>
+                                    <td><?php echo $comp_loan; ?></td>
+                                   
                                     <td><?php echo $ptax; ?></td>
 
                                     <td><?php echo $itx; ?></td>
 
                                     <td><?php echo $tot_deduct; ?></td>
 
-                                    <td><?php echo $net; ?></td>
+                                    <!-- <td><?php echo $net; ?></td> -->
 
                                     <td></td>
                                     
@@ -515,7 +509,7 @@
                 </table>
                 
                 <br>
-                <p> May be passed for payment Rs. 
+                <!-- <p> May be passed for payment Rs. 
                 <?php if ($this->input->post('category') == 1){
 
                     echo getIndianCurrency($gross);
@@ -533,7 +527,7 @@
 
                 }
                 ?>
-                </p>
+                </p> -->
 
                 <div  class="bottom">
                 
@@ -575,7 +569,7 @@
 
             <form method="POST" 
             id="form"
-            action="<?php echo site_url("payroll/salary/report");?>" >
+            action="<?php echo site_url("reports/salarycatgreport");?>" >
 
                 <div class="form-header">
                 
@@ -617,7 +611,7 @@
 
                                 <?php foreach($month_list as $m_list) {?>
 
-                                    <option value="<?php echo $m_list->month_name ?>" ><?php echo $m_list->month_name; ?></option>
+                                    <option value="<?php echo $m_list->id ?>" ><?php echo $m_list->month_name; ?></option>
 
                                 <?php
                                 }
