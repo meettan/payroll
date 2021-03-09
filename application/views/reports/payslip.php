@@ -277,6 +277,7 @@
                                                                 $payslip_dtls->insuarance+
                                                                 $payslip_dtls->ccs+
                                                                 $payslip_dtls->med_allow+
+                                                                $payslip_dtls->med_ins+
                                                                 $payslip_dtls->other_deduction+
                                                                 $payslip_dtls->tf+
                                                                 $payslip_dtls->telephone;  echo $tot_dd;?></td></td>
